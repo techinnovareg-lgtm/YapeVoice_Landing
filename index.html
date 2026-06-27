@@ -320,12 +320,12 @@
         }
         .video-tab.active,.video-tab:hover{background:var(--gradient-accent);color:var(--deep-purple);border-color:transparent}
         .video-container{
-            max-width:720px;margin:0 auto;border-radius:var(--radius);overflow:hidden;
+            max-width:420px;width:100%;margin:0 auto;border-radius:var(--radius);overflow:hidden;
             border:1px solid var(--glass-border);
             box-shadow:var(--shadow-xl),var(--shadow-glow-cyan);
         }
-        .video-wrapper{position:relative;padding-bottom:177.78%;height:0;background:#000}
-        .video-wrapper video,.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+        .video-wrapper{position:relative;padding-bottom:177.78%;height:0;background:#000;overflow:hidden}
+        .video-wrapper video,.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
         .video-panel{display:none}
         .video-panel.active{display:block}
         .video-caption{text-align:center;padding:20px;background:var(--card-bg);font-size:0.9rem;color:var(--text-secondary)}
@@ -724,7 +724,7 @@
         <div class="video-panel active" id="tab-conocer">
             <div class="video-container">
                 <div class="video-wrapper">
-                    <iframe src="https://www.tiktok.com/embed/v2/7652808041980513556" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen></iframe>
+                    <iframe src="https://www.tiktok.com/embed/v2/7652808041980513556" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
                     <strong>¿Y si ese Yape es falso?</strong> — Descubre cómo YapeVoice Notifier protege tu negocio confirmando cada cobro por voz.
@@ -736,7 +736,7 @@
         <div class="video-panel" id="tab-instalar">
             <div class="video-container">
                 <div class="video-wrapper">
-                    <iframe src="https://www.tiktok.com/embed/v2/7652589096015006996" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen></iframe>
+                    <iframe src="https://www.tiktok.com/embed/v2/7652589096015006996" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
                     <strong>Guía de instalación paso a paso</strong> — Sigue las instrucciones de la imagen o contáctanos por WhatsApp para asistencia personalizada.
@@ -748,7 +748,7 @@
         <div class="video-panel" id="tab-premium">
             <div class="video-container">
                 <div class="video-wrapper">
-                    <iframe src="https://www.tiktok.com/embed/v2/7652589684891176212" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen></iframe>
+                    <iframe src="https://www.tiktok.com/embed/v2/7652589684891176212" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
                     <strong>Activa Premium en segundos</strong> — Envía tu código por WhatsApp y recibe tu PIN al instante.
