@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YapeVoice Notifier – Tu asistente de cobro inteligente | Tech Innova</title>
-    <meta name="description" content="YapeVoice Notifier avisa cada pago recibido por Yape en voz alta y en tiempo real. Sin internet, 100% privado. Descarga la app ahora.">
-    <meta name="keywords" content="YapeVoice, Yape, notificador, pagos, voz, cobro, negocio, Perú, Tech Innova">
+    <meta name="description" content="YapeVoice Notifier avisa cada pago recibido por Yape y Plin en voz alta y en tiempo real. Sin internet, 100% privado. Descarga la app ahora.">
+    <meta name="keywords" content="YapeVoice, Yape, Plin, notificador, pagos, voz, cobro, negocio, Perú, Tech Innova">
     <meta name="author" content="Tech Innova">
 
     <!-- Open Graph -->
     <meta property="og:title" content="YapeVoice Notifier – Cobros confirmados por voz">
-    <meta property="og:description" content="Escucha cada pago de Yape en voz alta. Sin internet, privado y seguro.">
+    <meta property="og:description" content="Escucha cada pago de Yape y Plin en voz alta. Sin internet, privado y seguro.">
     <meta property="og:image" content="assets/cover.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techinnovareg-lgtm.github.io/YapeVoice-app/">
@@ -18,562 +18,1042 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="YapeVoice Notifier">
-    <meta name="twitter:description" content="Escucha cada pago de Yape en voz alta.">
+    <meta name="twitter:description" content="Escucha cada pago de Yape y Plin en voz alta.">
     <meta name="twitter:image" content="assets/cover.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="icon" type="image/png" href="assets/Nueva versión/logo.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ══════════════════════════════════════════════════════════════
-           DESIGN SYSTEM – YapeVoice Notifier Landing
-           Palette: #1f0334 · #01fbf4 · #fc66fc · #02e6cf · #fdfdfd
+           DESIGN SYSTEM – Clean Light Theme (YapeVoice Notifier v2.3)
            ══════════════════════════════════════════════════════════════ */
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         :root {
-            --deep-purple: #1f0334;
-            --cyan: #01fbf4;
-            --magenta: #fc66fc;
-            --teal: #02e6cf;
-            --white: #fdfdfd;
-            --dark-surface: #0d011a;
-            --card-bg: rgba(31, 3, 52, 0.6);
-            --glass: rgba(255,255,255,0.06);
-            --glass-border: rgba(1,251,244,0.15);
-            --text-secondary: rgba(253,253,253,0.7);
-            --gradient-main: linear-gradient(135deg, #1f0334 0%, #0d011a 50%, #1a0530 100%);
-            --gradient-accent: linear-gradient(135deg, #01fbf4, #02e6cf);
-            --gradient-magenta: linear-gradient(135deg, #fc66fc, #d44edb);
-            --gradient-hero: linear-gradient(180deg, #1f0334 0%, #0d011a 60%, #130225 100%);
+            --bg-body: #F8F9FC;
+            --bg-surface: #FFFFFF;
+            --bg-surface-alt: #F1F5F9;
+            
+            --border-light: #E2E8F0;
+            --border-accent: rgba(99, 102, 241, 0.2);
+
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --text-subtle: #64748B;
+
+            --primary-indigo: #6366F1;
+            --primary-purple: #742284;
+            --primary-cyan: #0EA5E9;
+            --primary-plin: #00C389;
+
+            --gradient-hero: linear-gradient(180deg, #F8F9FC 0%, #EFF6FF 50%, #F8F9FC 100%);
+            --gradient-accent: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+
             --radius: 16px;
             --radius-sm: 10px;
-            --radius-xs: 6px;
-            --shadow-xl: 0 25px 60px rgba(0,0,0,0.5);
-            --shadow-glow-cyan: 0 0 40px rgba(1,251,244,0.15);
-            --shadow-glow-magenta: 0 0 40px rgba(252,102,252,0.15);
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-pill: 100px;
+
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.1);
+            
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        html{scroll-behavior:smooth;font-size:16px}
-        body{
-            font-family:'Inter',system-ui,-apple-system,sans-serif;
-            background:var(--deep-purple);
-            color:var(--white);
-            line-height:1.7;
-            overflow-x:hidden;
-            -webkit-font-smoothing:antialiased;
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
-        /* ── Utilities ─────────────────────────────────────────────── */
-        .container{max-width:1200px;margin:0 auto;padding:0 24px}
-        .section-badge{
-            display:inline-block;font-size:0.75rem;font-weight:600;
-            text-transform:uppercase;letter-spacing:2px;
-            padding:6px 18px;border-radius:100px;
-            background:var(--glass);border:1px solid var(--glass-border);
-            color:var(--cyan);margin-bottom:16px;
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .section-title{
-            font-family:'Space Grotesk',sans-serif;
-            font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;
-            line-height:1.2;margin-bottom:16px;
-        }
-        .section-subtitle{
-            font-size:1.05rem;color:var(--text-secondary);
-            max-width:640px;margin:0 auto 48px;line-height:1.7;
-        }
-        .highlight-cyan{color:var(--cyan)}
-        .highlight-magenta{color:var(--magenta)}
-        .text-center{text-align:center}
 
-        /* ── Animations ────────────────────────────────────────────── */
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-        @keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(1,251,244,0.2)}50%{box-shadow:0 0 40px rgba(1,251,244,0.4)}}
-        @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-        @keyframes fade-up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes slide-in-left{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes slide-in-right{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes scale-in{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
-        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        /* ── Typography & Headings ─────────────────────────────────── */
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+        }
 
-        .animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
-        .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 18px;
+            border-radius: var(--radius-pill);
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--primary-indigo);
+            margin-bottom: 16px;
+        }
+
+        .section-badge-pending {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #D97706;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        .text-indigo { color: var(--primary-indigo); }
+        .text-purple { color: var(--primary-purple); }
+        .text-plin { color: var(--primary-plin); }
+        .text-center { text-align: center; }
 
         /* ── Navigation ────────────────────────────────────────────── */
-        .navbar{
-            position:fixed;top:0;left:0;right:0;z-index:1000;
-            padding:16px 0;
-            background:rgba(13,1,26,0.85);
-            backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-            border-bottom:1px solid var(--glass-border);
-            transition:var(--transition);
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
         }
-        .navbar.scrolled{padding:10px 0;background:rgba(13,1,26,0.95)}
-        .navbar .container{display:flex;align-items:center;justify-content:space-between}
-        .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white)}
-        .nav-brand img{width:38px;height:38px;border-radius:10px}
-        .nav-brand span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem}
-        .nav-links{display:flex;gap:32px;align-items:center;list-style:none}
-        .nav-links a{
-            color:var(--text-secondary);text-decoration:none;font-size:0.9rem;font-weight:500;
-            transition:var(--transition);position:relative;
-        }
-        .nav-links a::after{
-            content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-            background:var(--gradient-accent);transition:var(--transition);border-radius:2px;
-        }
-        .nav-links a:hover{color:var(--white)}
-        .nav-links a:hover::after{width:100%}
-        .nav-cta{
-            padding:10px 24px;border-radius:100px;font-size:0.85rem;font-weight:600;
-            text-decoration:none;color:var(--deep-purple);
-            background:var(--gradient-accent);
-            transition:var(--transition);border:none;cursor:pointer;
-        }
-        .nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow-cyan)}
 
-        /* Mobile nav */
-        .nav-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer;font-size:1.5rem;padding:4px}
-        @media(max-width:768px){
-            .nav-links{
-                display:none;flex-direction:column;position:absolute;
-                top:100%;left:0;right:0;background:rgba(13,1,26,0.98);
-                padding:24px;gap:20px;border-bottom:1px solid var(--glass-border);
+        .navbar.scrolled {
+            padding: 12px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .nav-brand span {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-indigo);
+        }
+
+        .nav-cta {
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #FFFFFF !important;
+            background: var(--gradient-accent);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #FFFFFF;
+                padding: 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border-light);
+                box-shadow: var(--shadow-md);
             }
-            .nav-links.active{display:flex}
-            .nav-toggle{display:block}
+            .nav-links.active { display: flex; }
+            .nav-toggle { display: block; }
         }
 
         /* ── HERO ──────────────────────────────────────────────────── */
-        .hero{
-            min-height:100vh;display:flex;align-items:center;
-            padding:120px 0 80px;
-            background:var(--gradient-hero);
-            position:relative;overflow:hidden;
-        }
-        .hero::before{
-            content:'';position:absolute;top:-50%;right:-30%;
-            width:800px;height:800px;border-radius:50%;
-            background:radial-gradient(circle,rgba(1,251,244,0.08) 0%,transparent 70%);
-            pointer-events:none;
-        }
-        .hero::after{
-            content:'';position:absolute;bottom:-40%;left:-20%;
-            width:600px;height:600px;border-radius:50%;
-            background:radial-gradient(circle,rgba(252,102,252,0.06) 0%,transparent 70%);
-            pointer-events:none;
-        }
-        .hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
-        .hero-content{animation:slide-in-left 0.8s ease forwards}
-        .hero-badge{
-            display:inline-flex;align-items:center;gap:8px;
-            padding:8px 20px;border-radius:100px;
-            background:var(--glass);border:1px solid var(--glass-border);
-            font-size:0.8rem;font-weight:500;color:var(--cyan);margin-bottom:24px;
-        }
-        .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:pulse-glow 2s infinite}
-        .hero h1{
-            font-family:'Space Grotesk',sans-serif;
-            font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.1;margin-bottom:20px;
-        }
-        .hero h1 .gradient-text{
-            background:linear-gradient(90deg,var(--cyan),var(--magenta),var(--cyan));
-            background-size:200% auto;
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            background-clip:text;
-            animation:gradient-shift 4s linear infinite;
-        }
-        .hero-desc{font-size:1.1rem;color:var(--text-secondary);margin-bottom:32px;max-width:480px}
-        .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
-
-        .btn-primary{
-            display:inline-flex;align-items:center;gap:10px;
-            padding:14px 32px;border-radius:100px;font-size:0.95rem;font-weight:600;
-            text-decoration:none;color:var(--deep-purple);
-            background:var(--gradient-accent);
-            transition:var(--transition);border:none;cursor:pointer;
-        }
-        .btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-glow-cyan)}
-        .btn-secondary{
-            display:inline-flex;align-items:center;gap:10px;
-            padding:14px 32px;border-radius:100px;font-size:0.95rem;font-weight:600;
-            text-decoration:none;color:var(--white);
-            background:transparent;border:1px solid var(--glass-border);
-            transition:var(--transition);cursor:pointer;
-        }
-        .btn-secondary:hover{background:var(--glass);border-color:var(--cyan);transform:translateY(-3px)}
-
-        .hero-stats{display:flex;gap:40px}
-        .stat{text-align:left}
-        .stat-number{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:var(--cyan)}
-        .stat-label{font-size:0.8rem;color:var(--text-secondary)}
-
-        .hero-visual{position:relative;animation:slide-in-right 0.8s ease forwards}
-        .hero-phone{
-            width:100%;max-width:380px;margin:0 auto;position:relative;
-            border-radius:32px;overflow:hidden;
-            box-shadow:var(--shadow-xl),var(--shadow-glow-cyan);
-            animation:float 6s ease-in-out infinite;
-        }
-        .hero-phone img{width:100%;display:block;border-radius:32px}
-        .hero-phone::before{
-            content:'';position:absolute;inset:0;
-            border-radius:32px;padding:2px;
-            background:linear-gradient(135deg,var(--cyan),var(--magenta));
-            -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-            mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-            -webkit-mask-composite:xor;mask-composite:exclude;
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 130px 0 80px;
+            background: var(--gradient-hero);
+            position: relative;
         }
 
-        @media(max-width:768px){
-            .hero .container{grid-template-columns:1fr;text-align:center}
-            .hero-desc{margin:0 auto 32px}
-            .hero-actions{justify-content:center}
-            .hero-stats{justify-content:center}
-            .hero-phone{max-width:260px}
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-indigo);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-plin);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: var(--radius-pill);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #FFFFFF;
+            background: var(--gradient-accent);
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.28);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.38);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: var(--radius-pill);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-main);
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-indigo);
+            color: var(--primary-indigo);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-indigo);
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-subtle);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-phone {
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
+            border: 6px solid #FFFFFF;
+        }
+
+        .hero-phone img {
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin: 0 auto 32px; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-phone { max-width: 260px; }
         }
 
         /* ── TRUST BAR ─────────────────────────────────────────────── */
-        .trust-bar{
-            padding:40px 0;
-            background:var(--dark-surface);
-            border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);
+        .trust-bar {
+            padding: 32px 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
         }
-        .trust-items{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;align-items:center}
-        .trust-item{display:flex;align-items:center;gap:10px;color:var(--text-secondary);font-size:0.9rem;font-weight:500}
-        .trust-icon{font-size:1.4rem}
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
 
         /* ── FEATURES ──────────────────────────────────────────────── */
-        .features{padding:100px 0;background:var(--gradient-main)}
-        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
-        .feature-card{
-            background:var(--card-bg);
-            border:1px solid var(--glass-border);
-            border-radius:var(--radius);padding:32px;
-            transition:var(--transition);position:relative;overflow:hidden;
+        .features {
+            padding: 100px 0;
+            background: var(--bg-body);
         }
-        .feature-card::before{
-            content:'';position:absolute;top:0;left:0;right:0;height:3px;
-            background:var(--gradient-accent);opacity:0;transition:var(--transition);
-        }
-        .feature-card:hover{transform:translateY(-6px);border-color:rgba(1,251,244,0.3)}
-        .feature-card:hover::before{opacity:1}
-        .feature-icon{
-            width:56px;height:56px;border-radius:14px;
-            display:flex;align-items:center;justify-content:center;
-            font-size:1.5rem;margin-bottom:20px;
-            background:var(--glass);border:1px solid var(--glass-border);
-        }
-        .feature-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:10px}
-        .feature-card p{font-size:0.9rem;color:var(--text-secondary);line-height:1.6}
 
-        /* ── HOW IT WORKS ──────────────────────────────────────────── */
-        .how-it-works{padding:100px 0;background:var(--dark-surface)}
-        .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;margin-top:48px}
-        .step-card{text-align:center;padding:32px 24px;position:relative}
-        .step-number{
-            width:56px;height:56px;border-radius:50%;margin:0 auto 20px;
-            display:flex;align-items:center;justify-content:center;
-            font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;
-            background:var(--gradient-accent);color:var(--deep-purple);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
         }
-        .step-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:10px}
-        .step-card p{font-size:0.88rem;color:var(--text-secondary)}
-        .step-connector{
-            display:none;position:absolute;top:28px;right:-16px;
-            width:32px;height:2px;background:var(--glass-border);
-        }
-        @media(min-width:769px){.step-connector{display:block}}
 
-        /* ── SCREENSHOTS ───────────────────────────────────────────── */
-        .screenshots{padding:100px 0;background:var(--gradient-main);overflow:hidden}
-        .screenshots-scroll{
-            display:flex;gap:24px;padding:48px 24px;
-            overflow-x:auto;scroll-snap-type:x mandatory;
-            -webkit-overflow-scrolling:touch;
-            scrollbar-width:none;
+        .feature-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
-        .screenshots-scroll::-webkit-scrollbar{display:none}
-        .screenshot-item{
-            flex:0 0 auto;width:240px;scroll-snap-align:center;
-            border-radius:24px;overflow:hidden;
-            border:2px solid var(--glass-border);
-            transition:var(--transition);
-            box-shadow:var(--shadow-xl);
-        }
-        .screenshot-item:hover{transform:scale(1.05);border-color:var(--cyan)}
-        .screenshot-item img{width:100%;display:block}
 
-        /* ── VIDEO SECTION ─────────────────────────────────────────── */
-        .videos{padding:100px 0;background:var(--dark-surface)}
-        .video-tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-        .video-tab{
-            padding:12px 28px;border-radius:100px;font-size:0.88rem;font-weight:600;
-            background:var(--glass);border:1px solid var(--glass-border);
-            color:var(--text-secondary);cursor:pointer;transition:var(--transition);
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(99, 102, 241, 0.3);
         }
-        .video-tab.active,.video-tab:hover{background:var(--gradient-accent);color:var(--deep-purple);border-color:transparent}
-        .video-container{
-            max-width:420px;width:100%;margin:0 auto;border-radius:var(--radius);overflow:hidden;
-            border:1px solid var(--glass-border);
-            box-shadow:var(--shadow-xl),var(--shadow-glow-cyan);
-        }
-        .video-wrapper{position:relative;padding-bottom:177.78%;height:0;background:#000;overflow:hidden}
-        .video-wrapper video,.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
-        .video-panel{display:none}
-        .video-panel.active{display:block}
-        .video-caption{text-align:center;padding:20px;background:var(--card-bg);font-size:0.9rem;color:var(--text-secondary)}
 
-        /* ── PRICING ───────────────────────────────────────────────── */
-        .pricing{padding:100px 0;background:var(--gradient-main)}
-        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:800px;margin:0 auto}
-        .price-card{
-            background:var(--card-bg);border:1px solid var(--glass-border);
-            border-radius:var(--radius);padding:40px 32px;text-align:center;
-            transition:var(--transition);position:relative;overflow:hidden;
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background: rgba(99, 102, 241, 0.06);
+            color: var(--primary-indigo);
         }
-        .price-card.featured{border-color:var(--cyan);box-shadow:var(--shadow-glow-cyan)}
-        .price-card.featured::before{
-            content:'POPULAR';position:absolute;top:16px;right:-32px;
-            padding:4px 48px;font-size:0.7rem;font-weight:700;letter-spacing:1px;
-            background:var(--gradient-accent);color:var(--deep-purple);
-            transform:rotate(45deg);
-        }
-        .price-card:hover{transform:translateY(-6px)}
-        .price-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;margin-bottom:8px}
-        .price-tag{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:800;color:var(--cyan);margin:16px 0}
-        .price-tag small{font-size:0.9rem;font-weight:400;color:var(--text-secondary)}
-        .price-features{list-style:none;text-align:left;margin:24px 0 32px}
-        .price-features li{padding:8px 0;font-size:0.9rem;color:var(--text-secondary);display:flex;align-items:center;gap:10px}
-        .price-features li::before{content:'✓';color:var(--cyan);font-weight:700;font-size:1rem}
 
-        /* ── INSTALLATION GUIDE ────────────────────────────────────── */
-        .install-guide{padding:100px 0;background:var(--dark-surface)}
-        .guide-content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
-        .guide-image{
-            border-radius:var(--radius);overflow:hidden;
-            border:1px solid var(--glass-border);box-shadow:var(--shadow-xl);
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
-        .guide-image img{width:100%;display:block}
-        .guide-steps{list-style:none}
-        .guide-steps li{
-            padding:16px 0;border-bottom:1px solid var(--glass-border);
-            display:flex;gap:16px;align-items:flex-start;font-size:0.92rem;
-        }
-        .guide-step-num{
-            flex:0 0 auto;width:32px;height:32px;border-radius:50%;
-            display:flex;align-items:center;justify-content:center;
-            background:var(--gradient-accent);color:var(--deep-purple);
-            font-weight:700;font-size:0.85rem;
-        }
-        @media(max-width:768px){.guide-content{grid-template-columns:1fr}}
 
-        /* ── FAQ ────────────────────────────────────────────────────── */
-        .faq{padding:100px 0;background:var(--gradient-main)}
-        .faq-list{max-width:720px;margin:48px auto 0}
-        .faq-item{
-            border:1px solid var(--glass-border);border-radius:var(--radius-sm);
-            margin-bottom:12px;overflow:hidden;background:var(--card-bg);
+        .feature-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
-        .faq-question{
-            width:100%;padding:20px 24px;display:flex;justify-content:space-between;
-            align-items:center;background:transparent;border:none;
-            color:var(--white);font-size:0.95rem;font-weight:600;cursor:pointer;
-            text-align:left;font-family:'Inter',sans-serif;transition:var(--transition);
-        }
-        .faq-question:hover{color:var(--cyan)}
-        .faq-arrow{transition:var(--transition);color:var(--cyan);font-size:1.2rem}
-        .faq-item.open .faq-arrow{transform:rotate(180deg)}
-        .faq-answer{
-            max-height:0;overflow:hidden;transition:max-height 0.4s ease;
-            padding:0 24px;
-        }
-        .faq-item.open .faq-answer{max-height:300px;padding:0 24px 20px}
-        .faq-answer p{font-size:0.9rem;color:var(--text-secondary);line-height:1.7}
 
-        /* ── CTA BANNER ────────────────────────────────────────────── */
-        .cta-banner{
-            padding:100px 0;
-            background:linear-gradient(135deg,#1f0334 0%,#2a0845 50%,#1f0334 100%);
-            position:relative;overflow:hidden;
+        /* ── NOVEDADES P2P & TELEGRAM ──────────────────────────────── */
+        .p2p-telegram {
+            padding: 100px 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
         }
-        .cta-banner::before{
-            content:'';position:absolute;top:50%;left:50%;
-            width:600px;height:600px;border-radius:50%;
-            transform:translate(-50%,-50%);
-            background:radial-gradient(circle,rgba(1,251,244,0.08),transparent 70%);
-            pointer-events:none;
-        }
-        .cta-inner{position:relative;z-index:1;text-align:center}
-        .cta-qr{
-            width:160px;height:160px;border-radius:var(--radius);
-            border:3px solid var(--cyan);margin:32px auto;
-            overflow:hidden;box-shadow:var(--shadow-glow-cyan);
-            background:var(--white);padding:8px;
-        }
-        .cta-qr img{width:100%;height:100%;object-fit:contain}
-        .cta-whatsapp{
-            display:inline-flex;align-items:center;gap:10px;
-            padding:14px 32px;border-radius:100px;font-size:0.95rem;font-weight:600;
-            text-decoration:none;color:var(--white);
-            background:#25D366;transition:var(--transition);margin-top:16px;
-        }
-        .cta-whatsapp:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(37,211,102,0.3)}
 
-        /* ── FOOTER ────────────────────────────────────────────────── */
-        .footer{padding:60px 0 30px;background:var(--dark-surface);border-top:1px solid var(--glass-border)}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-        .footer-brand p{font-size:0.85rem;color:var(--text-secondary);margin-top:12px;max-width:300px;line-height:1.6}
-        .footer-col h4{
-            font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:600;
-            margin-bottom:16px;color:var(--white);
+        .p2p-step-box {
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-top: 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
-        .footer-col a{
-            display:block;font-size:0.85rem;color:var(--text-secondary);
-            text-decoration:none;padding:4px 0;transition:var(--transition);
-        }
-        .footer-col a:hover{color:var(--cyan)}
-        .footer-bottom{
-            padding-top:24px;border-top:1px solid var(--glass-border);
-            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-        }
-        .footer-bottom p{font-size:0.8rem;color:var(--text-secondary)}
-        .footer-logo{display:flex;align-items:center;gap:10px}
-        .footer-logo img{width:30px;height:30px;border-radius:8px}
-        .footer-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem}
-        @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}.footer-bottom{flex-direction:column;text-align:center}}
 
-        /* ── Scrollbar ─────────────────────────────────────────────── */
-        ::-webkit-scrollbar{width:6px}
-        ::-webkit-scrollbar-track{background:var(--dark-surface)}
-        ::-webkit-scrollbar-thumb{background:var(--glass-border);border-radius:3px}
-        ::-webkit-scrollbar-thumb:hover{background:var(--cyan)}
+        .p2p-step-box.reverse {
+            direction: rtl;
+        }
+        .p2p-step-box.reverse > * {
+            direction: ltr;
+        }
 
-        /* ── Screenshots scroll container ────────────────────────────────────── */
+        .p2p-step-box img {
+            max-width: 100%;
+            max-height: 440px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 4px solid #FFFFFF;
+        }
+
+        @media (max-width: 768px) {
+            .p2p-step-box { grid-template-columns: 1fr; text-align: center; }
+            .p2p-step-box.reverse { direction: ltr; }
+        }
+
+        /* ── CÓMO FUNCIONA ─────────────────────────────────────────── */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--bg-body);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .step-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 36px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: var(--gradient-accent);
+            color: #FFFFFF;
+        }
+
+        .step-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ── CAPTURAS ──────────────────────────────────────────────── */
+        .screenshots {
+            padding: 100px 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
         .screenshots-scroll {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 24px;
-            padding: 48px 24px;
+            padding: 24px 0;
         }
-        @media(max-width: 768px) {
-            .screenshots-scroll {
-                justify-content: flex-start;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                scroll-snap-type: x mandatory;
-                padding-bottom: 16px;
-            }
-        }
+
         .screenshot-item {
-            flex: 0 1 240px;
-            scroll-snap-align: start;
-            border-radius: 24px;
+            flex: 0 1 230px;
+            border-radius: 20px;
             overflow: hidden;
-            border: 2px solid var(--glass-border);
+            border: 3px solid var(--border-light);
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
-            box-shadow: var(--shadow-xl);
         }
+
         .screenshot-item:hover {
-            transform: scale(1.05);
-            border-color: var(--cyan);
+            transform: scale(1.04);
+            border-color: var(--primary-indigo);
         }
+
         .screenshot-item img {
             width: 100%;
             display: block;
         }
 
-        /* ── Adjusted Pricing Grid ────────────────────────────────────────── */
+        /* ── TUTORIALES (YOUTUBE & TIKTOK) ─────────────────────────── */
+        .videos {
+            padding: 100px 0;
+            background: var(--bg-body);
+        }
+
+        .video-tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .video-tab {
+            padding: 10px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 700;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-tab.active, .video-tab:hover {
+            background: var(--primary-indigo);
+            color: #FFFFFF;
+            border-color: var(--primary-indigo);
+        }
+
+        .video-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 177.78%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        .video-panel { display: none; }
+        .video-panel.active { display: block; }
+        .video-caption {
+            padding: 18px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .pending-badge-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #D97706;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* ── PLANES Y PRECIOS ──────────────────────────────────────── */
+        .pricing {
+            padding: 100px 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* ── Floating WhatsApp Button ─────────────────────────────────────── */
+        .price-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card.featured {
+            border-color: var(--primary-indigo);
+            box-shadow: var(--shadow-md);
+        }
+
+        .price-card.featured::before {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: 14px; right: -32px;
+            padding: 4px 44px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: var(--gradient-accent);
+            color: #FFFFFF;
+            transform: rotate(45deg);
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .price-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .price-tag {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--primary-indigo);
+            margin: 16px 0;
+        }
+
+        .price-tag small {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-subtle);
+        }
+
+        .retention-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--primary-indigo);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin: 16px 0 28px;
+        }
+
+        .price-features li {
+            padding: 8px 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--primary-plin);
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        /* ── GUÍA DE INSTALACIÓN ───────────────────────────────────── */
+        .install-guide {
+            padding: 100px 0;
+            background: var(--bg-body);
+        }
+
+        .guide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .guide-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .guide-image img { width: 100%; display: block; }
+
+        .guide-steps { list-style: none; }
+
+        .guide-steps li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .guide-step-num {
+            flex: 0 0 auto;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-indigo);
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) { .guide-content { grid-template-columns: 1fr; } }
+
+        /* ── FAQ ────────────────────────────────────────────────────── */
+        .faq {
+            padding: 100px 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .faq-list {
+            max-width: 760px;
+            margin: 48px auto 0;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: #FFFFFF;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover { color: var(--primary-indigo); }
+
+        .faq-arrow {
+            transition: var(--transition);
+            color: var(--primary-indigo);
+            font-size: 1rem;
+        }
+
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px;
+        }
+
+        .faq-answer p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── CTA / BANNER FINAL ────────────────────────────────────── */
+        .cta-banner {
+            padding: 100px 0;
+            background: var(--bg-surface-alt);
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .cta-qr {
+            width: 150px;
+            height: 150px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border-light);
+            background: #FFFFFF;
+            padding: 8px;
+            box-shadow: var(--shadow-sm);
+            margin: 0 auto 12px;
+        }
+
+        .cta-qr img { width: 100%; height: 100%; object-fit: contain; }
+
+        /* ── FOOTER ────────────────────────────────────────────────── */
+        .footer {
+            padding: 60px 0 30px;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover { color: var(--primary-indigo); }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p { font-size: 0.85rem; color: var(--text-subtle); }
+
+        /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             background-color: #25D366;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 20px rgba(37,211,102,0.4);
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
             z-index: 9999;
             transition: var(--transition);
             text-decoration: none;
         }
+
         .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4), 0 0 30px rgba(37,211,102,0.6);
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
         }
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: currentColor;
-        }
+
+        .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
     </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     NAVIGATION
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- NAVIGATION -->
 <nav class="navbar" id="navbar">
     <div class="container">
         <a href="#" class="nav-brand">
-            <img src="assets/logo.png" alt="YapeVoice">
+            <img src="assets/Nueva versión/logo.png" alt="YapeVoice Logo">
             <span>YapeVoice</span>
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Menú">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#features">Características</a></li>
+            <li><a href="#p2p">Red P2P</a></li>
             <li><a href="#como-funciona">Cómo Funciona</a></li>
             <li><a href="#screenshots">Capturas</a></li>
-            <li><a href="#videos">Videos</a></li>
+            <li><a href="#videos">Tutoriales</a></li>
             <li><a href="#planes">Planes</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#descargar" class="nav-cta">Descargar</a></li>
+            <li><a href="#descargar" class="nav-cta">Descargar App</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero" id="inicio">
     <div class="container">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Versión 1.0.0 disponible
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+                <div class="hero-badge" style="margin-bottom: 0;">
+                    <span class="dot"></span>
+                    Versión 2.3.1
+                </div>
+                <div class="hero-badge" style="margin-bottom: 0; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%); border-color: rgba(99, 102, 241, 0.25); color: var(--primary-indigo);">
+                    <span>✨ Nueva versión más pulida, rápida y limpia</span>
+                </div>
             </div>
             <h1>
-                Tu cobro confirmado<br>
-                <span class="gradient-text">en voz alta</span>
+                Confirmación de cobro<br>
+                <span class="text-indigo">en voz alta e instantánea</span>
             </h1>
-            <p class="hero-desc">YapeVoice Notifier anuncia cada pago de Yape recibido con voz clara e instantánea. Sin mirar el celular, sin internet, 100% privado. <span class="highlight-cyan">Puedes usar la aplicación gratuitamente hasta 5 notificaciones diarias sin ningún pago.</span></p>
+            <p class="hero-desc">
+                YapeVoice Notifier anuncia cada pago recibido por <strong>Yape, Plin, Tunki y Agora</strong> en voz alta. Diseñado para Cajas y Meseros (Red P2P), sin internet, 100% privado y seguro.
             </p>
             <div class="hero-actions">
                 <a href="#descargar" class="btn-primary">
-                    📥 Descargar APK
+                    📥 Descargar APK Directa
                 </a>
                 <a href="#videos" class="btn-secondary">
-                    ▶ Ver Demo
+                    ▶ Ver Tutoriales
                 </a>
             </div>
             <div class="hero-stats">
@@ -586,410 +1066,482 @@
                     <div class="stat-label">Datos consumidos</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">< 1s</div>
+                    <div class="stat-number">&lt; 1s</div>
                     <div class="stat-label">Tiempo de respuesta</div>
                 </div>
             </div>
         </div>
         <div class="hero-visual">
             <div class="hero-phone">
-                <img src="assets/Screen_1.jpeg" alt="YapeVoice Notifier pantalla principal">
+                <img src="assets/Nueva versión/Screen_1.jpeg" alt="YapeVoice Notifier pantalla principal">
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     TRUST BAR
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- TRUST BAR -->
 <section class="trust-bar">
     <div class="container">
         <div class="trust-items">
-            <div class="trust-item"><span class="trust-icon">🔒</span> Procesamiento 100% local</div>
-            <div class="trust-item"><span class="trust-icon">📡</span> Funciona sin internet</div>
-            <div class="trust-item"><span class="trust-icon">🏢</span> Respaldado por Tech Innova</div>
-            <div class="trust-item"><span class="trust-icon">⚡</span> Respuesta instantánea</div>
-            <div class="trust-item"><span class="trust-icon">🇵🇪</span> Hecho en Perú</div>
+            <div class="trust-item"><span>🔒</span> Procesamiento 100% local</div>
+            <div class="trust-item"><span>📡</span> Funciona sin internet</div>
+            <div class="trust-item"><span>🏢</span> Respaldado por Tech Innova</div>
+            <div class="trust-item"><span>⚡</span> Anuncio en menos de 1 seg</div>
+            <div class="trust-item"><span>🇵🇪</span> Hecho en Perú</div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     FEATURES
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- FEATURES -->
 <section class="features" id="features">
     <div class="container text-center">
         <span class="section-badge">Características</span>
-        <h2 class="section-title">Todo lo que necesitas para <span class="highlight-cyan">cobrar seguro</span></h2>
-        <p class="section-subtitle">Diseñado especialmente para negocios, vendedores ambulantes, bodegas y emprendedores que reciben pagos por Yape.</p>
+        <h2 class="section-title">Todo lo que necesitas para <span class="text-indigo">cobrar sin distracciones</span></h2>
+        <p class="section-subtitle">Diseñado para bodegas, restaurantes, vendedores y negocios que reciben pagos con billeteras digitales.</p>
+        
         <div class="features-grid">
-            <div class="feature-card animate-on-scroll">
+            <div class="feature-card">
                 <div class="feature-icon">🔊</div>
-                <h3>Notificaciones por voz</h3>
-                <p>Escucha en voz alta el nombre del pagador y el monto recibido al instante. Nunca más mires la pantalla mientras atiendes.</p>
+                <h3>Anuncios por Voz</h3>
+                <p>Escucha el nombre del cliente y el monto exacto ingresado en tiempo real. Atiende sin soltar lo que estás haciendo.</p>
             </div>
-            <div class="feature-card animate-on-scroll">
+            <div class="feature-card">
                 <div class="feature-icon">📡</div>
-                <h3>Funciona sin internet</h3>
-                <p>El motor de voz se ejecuta localmente en tu dispositivo. No necesitas WiFi ni datos móviles para recibir los anuncios.</p>
+                <h3>100% Offline</h3>
+                <p>El sintetizador de voz se ejecuta dentro del teléfono. No requiere conexión a internet para anunciar notificaciones locales.</p>
             </div>
-            <div class="feature-card animate-on-scroll">
+            <div class="feature-card">
                 <div class="feature-icon">🔐</div>
-                <h3>Privacidad absoluta</h3>
-                <p>Tu información jamás sale de tu teléfono. No accedemos a tus claves, saldos ni datos bancarios. Privacidad garantizada.</p>
+                <h3>Privacidad Garantizada</h3>
+                <p>No almacenamos claves ni datos bancarios. La app procesa el texto de notificaciones sin salir de tu dispositivo.</p>
             </div>
-            <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">⚡</div>
-                <h3>Respuesta en < 1 segundo</h3>
-                <p>Desde que llega la notificación hasta que escuchas la voz: menos de un segundo. Confirmación de cobro ultrarrápida.</p>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Red P2P Cajas &amp; Meseros</h3>
+                <p>Vincula un dispositivo Emisor (Caja) con múltiples Receptores (Colaboradores) para que todos escuchen los cobros.</p>
             </div>
-            <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">🎛️</div>
-                <h3>Personaliza tu voz</h3>
-                <p>Ajusta la velocidad, el tono y el volumen de la voz a tu preferencia. Prueba distintas configuraciones hasta encontrar la ideal.</p>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Filtro Anti-Spam</h3>
+                <p>Descarta alertas bancarias no financieras o publicidad, anunciando únicamente pagos reales recibidos.</p>
             </div>
-            <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">🔋</div>
-                <h3>Bajo consumo de batería</h3>
-                <p>Optimizado para funcionar en segundo plano sin agotar tu batería. Trabaja todo el día sin preocupaciones.</p>
+            <div class="feature-card">
+                <div class="feature-icon">📲</div>
+                <h3>Multibilletera Compatible</h3>
+                <p>Soporte optimizado para Yape, Plin, Tunki, Agora y notificaciones bancarias de Perú.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     HOW IT WORKS
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- RED P2P & TELEGRAM -->
+<section class="p2p-telegram" id="p2p">
+    <div class="container text-center">
+        <span class="section-badge">Red P2P &amp; Automatización</span>
+        <h2 class="section-title">Conecta tu negocio en <span class="text-indigo">tiempo real</span></h2>
+        <p class="section-subtitle">Sincroniza la caja principal con el personal de atención y recibe reportes en Telegram.</p>
+        
+        <div class="p2p-step-box">
+            <div style="text-align: left;">
+                <span class="section-badge">Paso 1</span>
+                <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;">Emisor (Caja Principal)</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                    El celular que recibe las notificaciones oficiales de Yape/Plin se configura como <strong>Emisor</strong>. Genera un código seguro de 8 caracteres para vincular a tu equipo.
+                </p>
+                <ul style="list-style: none;">
+                    <li style="padding: 4px 0; font-weight: 600; color: var(--text-main);">✓ No requiere credenciales de banco</li>
+                    <li style="padding: 4px 0; font-weight: 600; color: var(--text-main);">✓ Transmisión cifrada punto a punto</li>
+                </ul>
+            </div>
+            <div>
+                <img src="assets/tutorial/tutorial_p2p_1.png" alt="Emisor P2P YapeVoice">
+            </div>
+        </div>
+
+        <div class="p2p-step-box reverse">
+            <div style="text-align: left;">
+                <span class="section-badge">Paso 2</span>
+                <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;">Receptores (Meseros / Personal)</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                    Tus trabajadores instalan la app como <strong>Receptores</strong> e ingresan el código del Emisor. Cada cobro realizado en caja resonará instantáneamente en sus celulares.
+                </p>
+                <ul style="list-style: none;">
+                    <li style="padding: 4px 0; font-weight: 600; color: var(--text-main);">✓ Escuchan nombre y monto al segundo</li>
+                    <li style="padding: 4px 0; font-weight: 600; color: var(--text-main);">✓ Sin límite de colaboradores en plan Premium</li>
+                </ul>
+            </div>
+            <div>
+                <img src="assets/tutorial/tutorial_p2p_2.png" alt="Receptores P2P YapeVoice">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
 <section class="how-it-works" id="como-funciona">
     <div class="container text-center">
         <span class="section-badge">Cómo funciona</span>
-        <h2 class="section-title">Actívalo en <span class="highlight-magenta">3 simples pasos</span></h2>
-        <p class="section-subtitle">Configurar YapeVoice Notifier toma menos de 2 minutos. Sigue estos pasos y comienza a recibir confirmaciones por voz.</p>
+        <h2 class="section-title">Actívalo en <span class="text-indigo">3 pasos sencillos</span></h2>
+        <p class="section-subtitle">La instalación toma menos de 2 minutos. Empieza a usarlo hoy mismo.</p>
+        
         <div class="steps-grid">
-            <div class="step-card animate-on-scroll">
+            <div class="step-card">
                 <div class="step-number">1</div>
-                <h3>Descarga la APK</h3>
-                <p>Descarga el archivo APK oficial desde nuestro sitio web o escanea el código QR.</p>
-                <span class="step-connector"></span>
+                <h3>Descarga el APK</h3>
+                <p>Descarga la aplicación directa desde el botón oficial de la página.</p>
             </div>
-            <div class="step-card animate-on-scroll">
+            <div class="step-card">
                 <div class="step-number">2</div>
-                <h3>Instala y configura permisos</h3>
-                <p>Instala la app y otorga los permisos necesarios: notificaciones y ejecución en segundo plano.</p>
-                <span class="step-connector"></span>
+                <h3>Concede Permisos</h3>
+                <p>Activa el acceso a notificaciones y desactiva la optimización de batería.</p>
             </div>
-            <div class="step-card animate-on-scroll">
+            <div class="step-card">
                 <div class="step-number">3</div>
-                <h3>¡Listo! Empieza a cobrar</h3>
-                <p>Cada Yape recibido será anunciado en voz alta automáticamente. Sigue trabajando sin pausas.</p>
+                <h3>¡Listo para Cobrar!</h3>
+                <p>Cada Yape o Plin recibido será anunciado en voz alta automáticamente.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     SCREENSHOTS
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- CAPTURAS DE PANTALLA -->
 <section class="screenshots" id="screenshots">
     <div class="container text-center">
         <span class="section-badge">Capturas</span>
-        <h2 class="section-title">Conoce la <span class="highlight-cyan">interfaz</span></h2>
-        <p class="section-subtitle">Una interfaz limpia, intuitiva y diseñada con colores vibrantes para que la experiencia sea agradable.</p>
-    </div>
-    <div class="screenshots-scroll">
-        <div class="screenshot-item"><img src="assets/Screen_1.jpeg" alt="Pantalla principal"></div>
-        <div class="screenshot-item"><img src="assets/Screen_2.jpeg" alt="Configuración de voz"></div>
-        <div class="screenshot-item"><img src="assets/Screen_3.jpeg" alt="Historial de pagos"></div>
-        <div class="screenshot-item"><img src="assets/Screen_4.jpeg" alt="Vista general de la app"></div>
+        <h2 class="section-title">Interfaz <span class="text-indigo">Limpia y Moderna</span></h2>
+        <p class="section-subtitle">Diseñada para una navegación clara, rápida y sin saturación visual.</p>
         
+        <div class="screenshots-scroll">
+            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_1.jpeg" alt="Pantalla Principal"></div>
+            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_2.jpeg" alt="Configuración de Voz"></div>
+            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_3.jpeg" alt="Historial de Pagos"></div>
+            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_4.jpeg" alt="Panel de Ajustes"></div>
+            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_5.jpeg" alt="Ajustes Avanzados"></div>
+        </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     VIDEOS
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- TUTORIALES Y VIDEOS -->
 <section class="videos" id="videos">
     <div class="container text-center">
-        <span class="section-badge">Videos</span>
-        <h2 class="section-title">Aprende con nuestros <span class="highlight-magenta">video tutoriales</span></h2>
-        <p class="section-subtitle">Mira los videos paso a paso para conocer la app, instalarla y activar Premium.</p>
-
+        <span class="section-badge">Tutoriales &amp; Guías</span>
+        <h2 class="section-title">Aprende a usar <span class="text-indigo">YapeVoice</span></h2>
+        <p class="section-subtitle">Videos instructivos paso a paso para configurar tu aplicación.</p>
+        
         <div class="video-tabs">
             <button class="video-tab active" data-tab="tab-conocer">1. Conocer la App</button>
-            <button class="video-tab" data-tab="tab-instalar">2. Descarga e Instalación</button>
-            <button class="video-tab" data-tab="tab-premium">3. Activar Premium</button>
+            <button class="video-tab" data-tab="tab-instalar">2. Instalación Paso a Paso</button>
+            <button class="video-tab" data-tab="tab-premium">3. Activar Licencia</button>
         </div>
 
-        <!-- Tab 1: Conocer la app -->
         <div class="video-panel active" id="tab-conocer">
             <div class="video-container">
                 <div class="video-wrapper">
                     <iframe src="https://www.tiktok.com/embed/v2/7652808041980513556" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
-                    <strong>¿Y si ese Yape es falso?</strong> — Descubre cómo YapeVoice Notifier protege tu negocio confirmando cada cobro por voz.
+                    <strong>Demostración de funcionamiento</strong> — Anuncio por voz en vivo al recibir un pago.
                 </div>
             </div>
         </div>
 
-        <!-- Tab 2: Descarga e instalación -->
         <div class="video-panel" id="tab-instalar">
             <div class="video-container">
                 <div class="video-wrapper">
                     <iframe src="https://www.tiktok.com/embed/v2/7652589096015006996" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
-                    <strong>Guía de instalación paso a paso</strong> — Sigue las instrucciones de la imagen o contáctanos por WhatsApp para asistencia personalizada.
+                    <strong>Guía de instalación</strong> — Configuración de permisos y segundo plano.
                 </div>
             </div>
         </div>
 
-        <!-- Tab 3: Activar Premium -->
         <div class="video-panel" id="tab-premium">
             <div class="video-container">
                 <div class="video-wrapper">
                     <iframe src="https://www.tiktok.com/embed/v2/7652589684891176212" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption">
-                    <strong>Activa Premium en segundos</strong> — Envía tu código por WhatsApp y recibe tu PIN al instante.
+                    <strong>Activación de Plan</strong> — Envía tu código de dispositivo y recibe tu PIN.
                 </div>
             </div>
         </div>
 
-        <!-- TikTok Call to Action -->
-        <div style="margin-top: 40px; text-align: center;" class="animate-on-scroll">
-            <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 16px;">
-                💬 ¡Apóyanos en redes sociales! Dale <strong style="color: var(--magenta)">like</strong> a los videos, <strong style="color: var(--cyan)">comenta</strong> y <strong style="color: var(--magenta)">sigue</strong> nuestra página oficial de TikTok.
+        <!-- Enlaces y Canales Oficiales de la Marca -->
+        <div style="margin-top: 48px; text-align: center;">
+            <div class="section-badge" style="background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3); color: var(--primary-cyan);">
+                <span>🌐 SITIOS Y CANALES OFICIALES DE LA MARCA</span>
+            </div>
+            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin: 12px auto 20px;">
+                Explora nuestros portales web oficiales y síguenos en nuestras redes sociales para obtener más guías, productos y soluciones de <strong>Tech Innova</strong>.
             </p>
-            <a href="https://www.tiktok.com/@techinnova1?_r=1&_t=ZS-97JZbLUQGyT" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 100px; font-size: 1rem; font-weight: 700; text-decoration: none; color: #fff; background: linear-gradient(135deg, #010101 0%, #25F4EE 50%, #FE0979 100%); transition: var(--transition); box-shadow: 0 4px 15px rgba(254,9,121,0.3); border: none; cursor: pointer;">
-                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor; margin-right: 8px;">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.99 1.15 2.35 1.93 3.85 2.23V10.2c-1.39-.06-2.73-.55-3.83-1.42-.5-.4-.93-.88-1.29-1.43v6.36c.02 1.63-.4 3.24-1.23 4.63-.82 1.34-2.07 2.37-3.53 2.92-1.46.54-3.07.61-4.57.19-1.5-.42-2.82-1.37-3.72-2.7C2.26 16.7 1.83 14.85 2.1 13c.27-1.85 1.22-3.52 2.67-4.68 1.45-1.15 3.3-1.74 5.15-1.63 1.54.08 3.02.69 4.19 1.7v-4.6c-1.28-.6-2.7-1.02-4.14-.99C6.35 2.89 3.22 5.56 2.37 9.17 1.52 12.78 2.76 16.64 5.5 19c2.74 2.36 6.83 2.87 10.1.26 3.27-2.61 4.34-7.1 2.65-10.9-.06-.15-.14-.3-.21-.45-.48-.82-1.16-1.5-1.95-2.01v6.78c0 .24-.04.48-.12.7-.35.98-1.12 1.75-2.1 2.1-.22.08-.46.12-.7.12-.55 0-1.08-.22-1.47-.61-.39-.39-.61-.92-.61-1.47 0-.55.22-1.08.61-1.47.39-.39.92-.61 1.47-.61.24 0 .48.04.7.12.22.08.42.21.58.37v-9.5c.01-1.31-.01-2.61-.01-3.92z"/>
-                </svg>
-                Ir a TikTok (@techinnova1)
-            </a>
+            <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+                <a href="https://tech-innova.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.88rem; text-decoration: none;">
+                    🌐 Web Tech Innova
+                </a>
+                <a href="https://techinnovareg-lgtm.github.io/YapeVoice_Landing" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.88rem; text-decoration: none;">
+                    📱 Web Yape Voice
+                </a>
+                <a href="https://www.youtube.com/@TechInnova-c9k" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.88rem; text-decoration: none;">
+                    ▶ YouTube (@TechInnova-c9k)
+                </a>
+                <a href="https://www.tiktok.com/@techinnova1" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.88rem; text-decoration: none;">
+                    🎵 TikTok (@techinnova1)
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     PRICING
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- PLANES Y PRECIOS -->
 <section class="pricing" id="planes">
     <div class="container text-center">
-        <span class="section-badge">Planes</span>
-        <h2 class="section-title">Elige tu plan <span class="highlight-cyan">ideal</span></h2>
-        <p class="section-subtitle">Comienza gratis y actualiza cuando lo necesites. Sin compromisos ni letras pequeñas.</p>
+        <span class="section-badge">Planes de Suscripción</span>
+        <h2 class="section-title">Elige el plan <span class="text-indigo">adecuado para tu negocio</span></h2>
+        <p class="section-subtitle">Precios transparentes. Retención de historial adaptada a tus necesidades de control.</p>
 
         <div class="pricing-grid">
-            <div class="price-card animate-on-scroll">
-                <h3>Gratis</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem">Perfecto para probar</p>
-                <div class="price-tag">S/ 0 <small>/ siempre</small></div>
-                <ul class="price-features">
-                    <li>5 Yapeos anunciados por día</li>
-                    <li>Notificaciones por voz</li>
-                    <li>Funciona sin internet</li>
-                    <li>Privacidad garantizada</li>
-                    <li>Soporte por WhatsApp</li>
-                </ul>
-                <a href="#descargar" class="btn-secondary" style="width:100%;justify-content:center">Descargar Gratis</a>
+            <!-- Plan Gratis -->
+            <div class="price-card">
+                <div>
+                    <h3>Prueba Gratuita</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.88rem;">Para evaluar la app</p>
+                    <div class="price-tag">S/ 0.00 <small>/ libre</small></div>
+                    <div class="retention-badge">🕒 Retención: 24 Horas</div>
+                    <ul class="price-features">
+                        <li>5 anuncios de voz al día</li>
+                        <li>Retención de historial: 24 horas</li>
+                        <li>Soporte básico</li>
+                    </ul>
+                </div>
+                <a href="#descargar" class="btn-secondary" style="width: 100%; justify-content: center;">Descargar Gratis</a>
             </div>
-            <div class="price-card animate-on-scroll">
-                <h3>Mensual</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem">Plan flexible para usuarios ocasionales</p>
-                <div class="price-tag">S/ 4.90 <small>/ mes</small></div>
-                <ul class="price-features">
-                    <li>Hasta 50 Yapeos al día</li>
-                    <li>Notificaciones por voz</li>
-                    <li>Sin internet</li>
-                    <li>Privacidad garantizada</li>
-                    <li>Soporte por WhatsApp</li>
-                </ul>
-                <a href="https://wa.me/51947515529?text=Quiero%20mi%20plan%20mensual%20de%20YapeVoice" target="_blank" class="btn-primary" style="width:100%;justify-content:center">Activar Mensual</a>
+
+            <!-- Personal Mensual -->
+            <div class="price-card">
+                <div>
+                    <h3>Personal Mensual</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.88rem;">1 Dispositivo Solitario</p>
+                    <div class="price-tag">S/ 4.90 <small>/ mes</small></div>
+                    <div class="retention-badge">🕒 Retención: 7 Días</div>
+                    <ul class="price-features">
+                        <li>Anuncios por voz ilimitados</li>
+                        <li><strong>Retención de historial: 7 Días</strong></li>
+                        <li>Webhooks de Telegram ilimitados</li>
+                        <li>Soporte directo por WhatsApp</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51947515529?text=Hola%2C%20quiero%20activar%20el%20plan%20Personal%20Mensual%20de%20YapeVoice" target="_blank" class="btn-secondary" style="width: 100%; justify-content: center;">Activar Mensual</a>
             </div>
-            <div class="price-card featured animate-on-scroll">
-                <h3>Premium Plus</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem">Para negocios exigentes</p>
-                <div class="price-tag">S/ 14.90 <small>/ anual</small></div>
-                <ul class="price-features">
-                    <li><strong style="color:var(--cyan)">Yapeos ILIMITADOS</strong></li>
-                    <li>Notificaciones por voz</li>
-                    <li>Funciona sin internet</li>
-                    <li>Privacidad garantizada</li>
-                    <li>Soporte prioritario 24/7</li>
-                    <li>Análisis de cobros</li>
-                    <li>Historial ilimitado</li>
-                </ul>
-                <a href="https://wa.me/51947515529?text=Hola%2C%20quiero%20activar%20mi%20plan%20Premium%20Plus%20de%20YapeVoice" target="_blank" class="btn-primary" style="width:100%;justify-content:center">Activar Premium</a>
+
+            <!-- Personal Anual -->
+            <div class="price-card">
+                <div>
+                    <h3>Personal Anual</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.88rem;">Mayor ahorro para 1 equipo</p>
+                    <div class="price-tag">S/ 14.90 <small>/ año</small></div>
+                    <div class="retention-badge">🕒 Retención: 7 Días</div>
+                    <ul class="price-features">
+                        <li>Anuncios por voz ilimitados</li>
+                        <li><strong>Retención de historial: 7 Días</strong></li>
+                        <li>Webhooks de Telegram ilimitados</li>
+                        <li>Soporte prioritario</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51947515529?text=Hola%2C%20quiero%20activar%20el%20plan%20Personal%20Anual%20de%20YapeVoice" target="_blank" class="btn-secondary" style="width: 100%; justify-content: center;">Activar Anual</a>
+            </div>
+
+            <!-- Premium Mensual (P2P) -->
+            <div class="price-card featured">
+                <div>
+                    <h3>Premium Mensual</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.88rem;">Red P2P Cajas &amp; Meseros</p>
+                    <div class="price-tag">S/ 9.90 <small>/ mes</small></div>
+                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 30 Días</div>
+                    <ul class="price-features">
+                        <li><strong>Red P2P (Emisor + Receptores)</strong></li>
+                        <li><strong>Retención de historial: 30 Días</strong></li>
+                        <li>Gestión de cupos flotantes</li>
+                        <li>Webhooks de Telegram</li>
+                        <li>Soporte técnico preferencial</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51947515529?text=Hola%2C%20quiero%20activar%20el%20plan%20Premium%20Mensual%20de%20YapeVoice" target="_blank" class="btn-primary" style="width: 100%; justify-content: center;">Activar Premium</a>
+            </div>
+
+            <!-- Premium Anual (P2P) -->
+            <div class="price-card featured">
+                <div>
+                    <h3>Premium Anual</h3>
+                    <p style="color: var(--text-subtle); font-size: 0.88rem;">Solución Completa Todo el Año</p>
+                    <div class="price-tag">S/ 29.90 <small>/ año</small></div>
+                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 30 Días</div>
+                    <ul class="price-features">
+                        <li><strong>Red P2P (Emisor + Receptores)</strong></li>
+                        <li><strong>Retención de historial: 30 Días</strong></li>
+                        <li>Gestión de cupos flotantes</li>
+                        <li>Webhooks de Telegram</li>
+                        <li>Soporte técnico preferencial 24/7</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51947515529?text=Hola%2C%20quiero%20activar%20el%20plan%20Premium%20Anual%20de%20YapeVoice" target="_blank" class="btn-primary" style="width: 100%; justify-content: center;">Activar Premium Anual</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     INSTALLATION GUIDE
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- GUÍA DE INSTALACIÓN -->
 <section class="install-guide" id="guia">
     <div class="container">
         <div class="text-center">
-            <span class="section-badge">Guía de Instalación</span>
-            <h2 class="section-title">Instala en <span class="highlight-magenta">minutos</span></h2>
-            <p class="section-subtitle">Sigue estos pasos para instalar YapeVoice Notifier en tu dispositivo Android.</p>
+            <span class="section-badge">Instalación</span>
+            <h2 class="section-title">Pasos para instalar la <span class="text-indigo">APK Oficial</span></h2>
+            <p class="section-subtitle">Instalación rápida sin complicaciones en cualquier Android.</p>
         </div>
         <div class="guide-content">
-            <div class="guide-image animate-on-scroll">
-                <img src="assets/Captura guia.png" alt="Guía de instalación paso a paso">
+            <div class="guide-image">
+                <img src="assets/Nueva versión/Captura guia.jpg" alt="Guía de Instalación YapeVoice">
             </div>
             <div>
                 <ol class="guide-steps">
-                    <li><span class="guide-step-num">1</span><span>Ingresa al enlace de descarga o escanea el código QR oficial.</span></li>
-                    <li><span class="guide-step-num">2</span><span>Descarga el archivo APK (<code style="color:var(--cyan)">app-arm64-v8a-release.apk</code>).</span></li>
-                    <li><span class="guide-step-num">3</span><span>Pausa Play Protect temporalmente desde Google Play Store.</span></li>
-                    <li><span class="guide-step-num">4</span><span>Abre la carpeta Descargas y toca el archivo APK para instalar.</span></li>
-                    <li><span class="guide-step-num">5</span><span>Activa «Fuentes desconocidas» si Android bloquea la instalación.</span></li>
-                    <li><span class="guide-step-num">6</span><span>Otorga permiso de acceso a notificaciones dentro de la app.</span></li>
-                    <li><span class="guide-step-num">7</span><span>Desactiva la optimización de batería para la app.</span></li>
-                    <li><span class="guide-step-num">8</span><span>Sube el volumen de tu teléfono y ¡listo para funcionar!</span></li>
+                    <li><span class="guide-step-num">1</span>Descarga el archivo APK oficial desde el botón inferior.</li>
+                    <li><span class="guide-step-num">2</span>Abre la carpeta de Descargas en tu teléfono y toca la APK.</li>
+                    <li><span class="guide-step-num">3</span>Si Android lo solicita, autoriza "Instalar fuentes desconocidas".</li>
+                    <li><span class="guide-step-num">4</span>Abre YapeVoice y concede el permiso de lectura de notificaciones.</li>
+                    <li><span class="guide-step-num">5</span>Desactiva la optimización de batería para asegurar la lectura en segundo plano.</li>
+                    <li><span class="guide-step-num">6</span>Ajusta el volumen multimedia de tu teléfono y ¡listo para recibir anuncios!</li>
                 </ol>
-                <a href="https://techinnovareg-lgtm.github.io/YapeVoice-app/" class="btn-primary" style="margin-top: 16px; display: inline-block;">Ver Guía Completa</a>
+                <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="../index.html" target="_blank" class="btn-primary" style="font-size: 0.88rem; text-decoration: none;">
+                        📖 Ver Manual de Instalación Interactivo
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Floating WhatsApp Button -->
-<a href="https://wa.me/51947515529" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#FFF"/>
-    </svg>
-</a>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     FAQ
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- FAQ -->
 <section class="faq" id="faq">
     <div class="container text-center">
         <span class="section-badge">Preguntas Frecuentes</span>
-        <h2 class="section-title">¿Tienes <span class="highlight-cyan">dudas</span>?</h2>
-        <p class="section-subtitle">Respuestas rápidas a las preguntas más comunes sobre YapeVoice Notifier.</p>
+        <h2 class="section-title">Resolvemos tus <span class="text-indigo">dudas</span></h2>
+        <p class="section-subtitle">Respuestas a las preguntas más frecuentes sobre el servicio.</p>
 
         <div class="faq-list">
             <div class="faq-item">
-                <button class="faq-question">¿La app accede a mis datos bancarios o contraseñas? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p><strong>No.</strong> YapeVoice Notifier solo lee las notificaciones de Yape para extraer el nombre y monto. Nunca accede a tu cuenta bancaria, claves, saldos ni información financiera.</p></div>
+                <button class="faq-question">¿La app solicita mis contraseñas o claves bancarias? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><p><strong>Jamás.</strong> YapeVoice Notifier solo lee las notificaciones estándar que muestra tu teléfono al recibir un pago. No interactúa con la app de Yape ni requiere contraseñas.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿Necesito internet para que funcione? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p><strong>No.</strong> El motor de voz funciona al 100% de forma local en tu dispositivo. No necesitas WiFi ni datos móviles para escuchar los anuncios de cobro.</p></div>
+                <button class="faq-question">¿Por cuántos días se guarda el historial de depósitos? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><p>El tiempo de retención depende de tu plan: <strong>Free (24 Horas)</strong>, <strong>Personal (7 Días)</strong> y <strong>Premium (30 Días)</strong>. Los datos antiguos se eliminan automáticamente de forma segura.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿Cuántos Yapeos puedo recibir gratis al día? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p>Con el plan gratuito puedes recibir <strong>5 anuncios por voz al día</strong>. Con el plan Premium Plus (S/ 14.90/año), los anuncios son <strong>ilimitados</strong>.</p></div>
+                <button class="faq-question">¿Funciona en teléfonos sin acceso a internet? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><p><strong>Sí.</strong> Para notificaciones locales en un único dispositivo, la app funciona completamente offline mediante el motor TTS nativo de Android.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">¿La app consume mucha batería? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p><strong>No.</strong> La app está optimizada para un consumo mínimo de batería. Funciona en segundo plano de manera eficiente para que puedas trabajar todo el día sin preocupaciones.</p></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">¿Cómo activo el plan Premium? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p>Abre la app, toca «Activar Premium», copia tu código de dispositivo y envíalo por WhatsApp al <strong>+51 947 515 529</strong>. Te responderemos con un PIN de 6 dígitos para activar tu plan al instante.</p></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">¿Es seguro instalar la APK fuera de la Play Store? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p>Sí. La APK es firmada y distribuida oficialmente por <strong>Tech Innova</strong>, empresa peruana con trayectoria en desarrollo de software. Puedes verificar la integridad del archivo mediante el hash proporcionado en la página de descarga.</p></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">¿En qué dispositivos funciona? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p>YapeVoice Notifier es compatible con cualquier dispositivo <strong>Android 8.0 (Oreo) o superior</strong>. Compatible con Samsung, Xiaomi, Huawei, Motorola, Realme y más.</p></div>
+                <button class="faq-question">¿Cómo se realiza la activación con PIN? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer"><p>Envías tu código de dispositivo al WhatsApp oficial (+51 947 515 529), realizas el Yape o Plin correspondiente y recibes de inmediato tu PIN de activación para ingresarlo en la app.</p></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     CTA / DOWNLOAD
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- CTA / DESCARGA -->
 <section class="cta-banner" id="descargar">
-    <div class="cta-inner">
-        <span class="section-badge">Descarga ahora</span>
-        <h2 class="section-title">Moderniza tu negocio <span class="highlight-cyan">hoy</span></h2>
-        <p class="section-subtitle" style="margin-bottom:24px">Escanea el código QR con la cámara de tu celular o toca el botón para descargar la APK.</p>
-        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 32px auto;">
-            <!-- QR Descarga -->
+    <div class="container text-center">
+        <span class="section-badge">Descarga Directa</span>
+        <h2 class="section-title">Comienza a probar <span class="text-indigo">YapeVoice hoy</span></h2>
+        <p class="section-subtitle">Escanea el QR de descarga o pulsa el botón para obtener la APK Oficial.</p>
+
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 32px 0;">
             <div>
-                <div class="cta-qr" style="margin: 0 auto 12px;">
-                    <img src="assets/qr_download.png" alt="QR para descargar YapeVoice Notifier">
+                <div class="cta-qr">
+                    <img src="assets/Nueva versión/qr_download.png" alt="QR Descarga App">
                 </div>
-                <p style="font-size: 0.9rem; color: var(--cyan); font-weight: 600;">1. QR de Descarga App</p>
+                <p style="font-size: 0.9rem; font-weight: 700; color: var(--primary-indigo);">QR de Descarga APK</p>
             </div>
-            <!-- QR Pago -->
             <div>
-                <div class="cta-qr" style="margin: 0 auto 12px; border-color: var(--magenta); box-shadow: var(--shadow-glow-magenta);">
-                    <img src="assets/QR_Pago_plan.png" alt="QR de Pago Yape para Planes">
+                <div class="cta-qr" style="border-color: rgba(116,34,132,0.3);">
+                    <img src="assets/Nueva versión/QR_Pago_plan.png" alt="QR Pago Yape">
                 </div>
-                <p style="font-size: 0.9rem; color: var(--magenta); font-weight: 600;">2. QR de Pago (Yape)</p>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Número Yape: <strong style="color: var(--white)">+51 949 191 595</strong></p>
+                <p style="font-size: 0.9rem; font-weight: 700; color: var(--primary-purple);">QR de Pago Yape (+51 949 191 595)</p>
             </div>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
             <a href="https://techinnovareg-lgtm.github.io/YapeVoice-app/" target="_blank" class="btn-primary">📥 Descargar APK Oficial</a>
-            <a href="https://wa.me/51947515529?text=Hola%2C%20necesito%20ayuda%20para%20instalar%20YapeVoice%20Notifier" target="_blank" class="cta-whatsapp">💬 Soporte por WhatsApp</a>
+            <a href="https://wa.me/51947515529?text=Hola%2C%20deseo%20asistencia%20para%20probar%20YapeVoice%20Notifier" target="_blank" class="btn-secondary">💬 Contactar por WhatsApp</a>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="footer-logo">
-                    <img src="assets/logo.png" alt="YapeVoice">
-                    <span>YapeVoice Notifier</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/Nueva versión/logo.png" alt="YapeVoice Logo" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.1rem;">YapeVoice Notifier</span>
                 </div>
-                <p>Tu asistente de cobro inteligente. Confirmación de pagos por voz, en tiempo real y sin internet. Desarrollado con 💜 en Perú por Tech Innova.</p>
+                <p>Tu asistente de cobro inteligente. Confirmación de pagos por voz en tiempo real. Desarrollado con dedicación por Tech Innova en Perú 🇵🇪.</p>
+                <div style="margin-top: 14px;">
+                    <a href="https://tech-innova.vercel.app" target="_blank" rel="noopener noreferrer" title="Tech Innova - Innovación en cada solución">
+                        <img src="assets/Nueva versión/Baner.png" alt="Tech Innova Logo Banner" style="max-height: 40px; width: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                    </a>
+                </div>
             </div>
             <div class="footer-col">
-                <h4>Producto</h4>
+                <h4>Navegación</h4>
                 <a href="#features">Características</a>
+                <a href="#p2p">Red P2P</a>
                 <a href="#screenshots">Capturas</a>
-                <a href="#videos">Videos</a>
                 <a href="#planes">Planes</a>
             </div>
             <div class="footer-col">
                 <h4>Soporte</h4>
                 <a href="#guia">Guía de instalación</a>
                 <a href="#faq">Preguntas frecuentes</a>
-                <a href="https://wa.me/51947515529" target="_blank">WhatsApp</a>
+                <a href="https://wa.me/51947515529" target="_blank">WhatsApp Oficial</a>
             </div>
             <div class="footer-col">
-                <h4>Empresa</h4>
-                <a href="#">Acerca de Tech Innova</a>
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de uso</a>
-                <a href="https://github.com/TechInnova" target="_blank">GitHub</a>
+                <h4>Ecosistema Tech Innova</h4>
+                <a href="https://tech-innova.vercel.app" target="_blank" rel="noopener noreferrer">Web Tech Innova</a>
+                <a href="https://tech-innova.vercel.app/tienda" target="_blank" rel="noopener noreferrer">Tienda Tech Innova</a>
+                <a href="https://techinnovareg-lgtm.github.io/YapeVoice_Landing" target="_blank" rel="noopener noreferrer">Web Yape Voice</a>
+            </div>
+            <div class="footer-col">
+                <h4>Canales Oficiales</h4>
+                <a href="https://www.youtube.com/@TechInnova-c9k" target="_blank" rel="noopener noreferrer">YouTube Tech Innova</a>
+                <a href="https://www.tiktok.com/@techinnova1" target="_blank" rel="noopener noreferrer">TikTok Tech Innova</a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>© 2026 Tech Innova – Todos los derechos reservados.</p>
-            <p>Contacto: +51 947 515 529 · Perú 🇵🇪</p>
+            <p>Soporte Oficial: +51 947 515 529 · Perú</p>
         </div>
     </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     JAVASCRIPT
-     ═══════════════════════════════════════════════════════════════ -->
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/51947515529" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Soporte WhatsApp">
+    <svg viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- JAVASCRIPT -->
 <script>
-    // ── Navbar scroll effect ──────────────────────────────────────
+    // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // ── Mobile nav toggle ─────────────────────────────────────────
+    // Mobile nav toggle
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
@@ -997,7 +1549,7 @@
         link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
-    // ── Video tabs ────────────────────────────────────────────────
+    // Video tabs
     document.querySelectorAll('.video-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
@@ -1007,34 +1559,13 @@
         });
     });
 
-    // ── FAQ accordion ─────────────────────────────────────────────
+    // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', () => {
             const item = q.closest('.faq-item');
             const wasOpen = item.classList.contains('open');
             document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
             if (!wasOpen) item.classList.add('open');
-        });
-    });
-
-    // ── Scroll animations (IntersectionObserver) ──────────────────
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-    // ── Smooth scroll for anchor links ────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            const target = document.querySelector(a.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 </script>
