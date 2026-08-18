@@ -251,6 +251,126 @@
             .nav-toggle { display: block; }
         }
 
+        /* ── APP MAIN BANNER ───────────────────────────────────────── */
+        .app-main-banner {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 50%, #EFF6FF 100%);
+            border: 2px solid rgba(99, 102, 241, 0.22);
+            border-radius: 24px;
+            padding: 28px 32px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .app-main-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #742284 0%, #6366F1 50%, #0EA5E9 100%);
+        }
+
+        .app-banner-header {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 20px;
+        }
+
+        .app-banner-logo-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .app-banner-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 22px;
+            object-fit: contain;
+            background: #FFFFFF;
+            padding: 6px;
+            border: 2px solid var(--border-light);
+            box-shadow: 0 10px 25px rgba(116, 34, 132, 0.18);
+        }
+
+        .app-banner-info {
+            flex: 1;
+        }
+
+        .app-banner-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .app-banner-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.9rem, 4vw, 2.7rem);
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #742284 0%, #4F46E5 55%, #0EA5E9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-banner-tagline {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .app-banner-wallets {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+            flex-wrap: wrap;
+        }
+
+        .app-banner-wallets-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-subtle);
+        }
+
+        .app-banner-wallets img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #FFFFFF;
+            padding: 4px 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        @media (max-width: 640px) {
+            .app-main-banner {
+                padding: 22px 18px;
+            }
+            .app-banner-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+            .app-banner-logo {
+                width: 72px;
+                height: 72px;
+            }
+            .app-banner-wallets {
+                justify-content: center;
+            }
+        }
+
         /* ── HERO ──────────────────────────────────────────────────── */
         .hero {
             min-height: 90vh;
@@ -1032,21 +1152,39 @@
 <section class="hero" id="inicio">
     <div class="container">
         <div class="hero-content">
-            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
-                <div class="hero-badge" style="margin-bottom: 0;">
-                    <span class="dot"></span>
-                    Versión 2.3.1
+            <!-- APP MAIN BANNER -->
+            <div class="app-main-banner">
+                <div class="app-banner-header">
+                    <div class="app-banner-logo-wrapper">
+                        <img src="assets/Nueva versión/logo.png" alt="Yape Voice Notifier Logo Oficial" class="app-banner-logo">
+                    </div>
+                    <div class="app-banner-info">
+                        <div class="app-banner-meta-row">
+                            <div class="hero-badge" style="margin-bottom: 0;">
+                                <span class="dot"></span>
+                                Versión 2.3.1
+                            </div>
+                            <div class="hero-badge" style="margin-bottom: 0; background: linear-gradient(135deg, rgba(116, 34, 132, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%); border-color: rgba(116, 34, 132, 0.25); color: var(--primary-purple);">
+                                <img src="assets/Nueva versión/logo_TI.png" alt="Tech Innova Logo" style="height: 16px; width: auto; vertical-align: middle; margin-right: 4px;">
+                                <span>Por Tech Innova Perú</span>
+                            </div>
+                        </div>
+                        <h1 class="app-banner-title">YAPE VOICE NOTIFIER</h1>
+                        <p class="app-banner-tagline">✨ Recibe tu pago. Escúchalo al instante.</p>
+                    </div>
                 </div>
-                <div class="hero-badge" style="margin-bottom: 0; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%); border-color: rgba(99, 102, 241, 0.25); color: var(--primary-indigo);">
-                    <span>✨ Nueva versión más pulida, rápida y limpia</span>
+                <div class="app-banner-wallets">
+                    <span class="app-banner-wallets-label">Billeteras compatibles:</span>
+                    <img src="assets/Nueva versión/Baner.png" alt="Logos de billeteras compatibles: Yape, Plin, BBVA, SIP, Agora, Lemon">
                 </div>
             </div>
+
             <h1>
                 Confirmación de cobro<br>
                 <span class="text-indigo">en voz alta e instantánea</span>
             </h1>
             <p class="hero-desc">
-                YapeVoice Notifier anuncia cada pago recibido por <strong>Yape, Plin, Tunki y Agora</strong> en voz alta. Diseñado para Cajas y Meseros (Red P2P), sin internet, 100% privado y seguro.
+                YapeVoice Notifier anuncia cada pago recibido por <strong>Yape, Plin, BBVA, SIP, Agora y Lemon</strong> en voz alta. Diseñado para Cajas y Meseros (Red P2P), sin internet, 100% privado y seguro.
             </p>
             <div class="hero-actions">
                 <a href="#descargar" class="btn-primary">
