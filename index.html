@@ -27,11 +27,11 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ══════════════════════════════════════════════════════════════
-           DESIGN SYSTEM – Clean Light Theme (YapeVoice Notifier v2.3)
+           DESIGN SYSTEM – Dynamic & Modern Experience (v2.5)
            ══════════════════════════════════════════════════════════════ */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -45,7 +45,7 @@
             --bg-surface-alt: #F1F5F9;
             
             --border-light: #E2E8F0;
-            --border-accent: rgba(99, 102, 241, 0.2);
+            --border-accent: rgba(99, 102, 241, 0.25);
 
             --text-main: #0F172A;
             --text-muted: #475569;
@@ -55,19 +55,22 @@
             --primary-purple: #742284;
             --primary-cyan: #0EA5E9;
             --primary-plin: #00C389;
+            --primary-yape: #742284;
 
-            --gradient-hero: linear-gradient(180deg, #F8F9FC 0%, #EFF6FF 50%, #F8F9FC 100%);
+            --gradient-hero: linear-gradient(180deg, #F8F9FC 0%, #EFF6FF 45%, #F8F9FC 100%);
             --gradient-accent: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+            --gradient-glow: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(116, 34, 132, 0.08) 50%, transparent 70%);
 
-            --radius: 16px;
-            --radius-sm: 10px;
+            --radius: 20px;
+            --radius-sm: 12px;
             --radius-pill: 100px;
 
-            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.06);
-            --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.1);
+            --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+            --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.07);
+            --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.12);
+            --shadow-glow: 0 0 35px rgba(99, 102, 241, 0.25);
             
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         html {
@@ -84,7 +87,47 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── Typography & Headings ─────────────────────────────────── */
+        /* ── Scroll Animations (SCROLL REVEAL ENGINE) ──────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger Delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* ── Typography ────────────────────────────────────────────── */
         h1, h2, h3, h4, .font-heading {
             font-family: 'Outfit', sans-serif;
             color: var(--text-main);
@@ -99,37 +142,48 @@
         .section-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            padding: 6px 18px;
+            padding: 8px 20px;
             border-radius: var(--radius-pill);
             background: rgba(99, 102, 241, 0.08);
             border: 1px solid rgba(99, 102, 241, 0.2);
             color: var(--primary-indigo);
             margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
         }
 
-        .section-badge-pending {
-            background: rgba(245, 158, 11, 0.12);
-            border-color: rgba(245, 158, 11, 0.3);
-            color: #D97706;
+        .section-badge .pulse-green-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-plin);
+            box-shadow: 0 0 0 0 rgba(0, 195, 137, 0.7);
+            animation: pulseGreen 2s infinite;
+        }
+
+        @keyframes pulseGreen {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 195, 137, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 195, 137, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 195, 137, 0); }
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-size: clamp(2.1rem, 4.5vw, 3rem);
             font-weight: 800;
-            line-height: 1.25;
+            line-height: 1.2;
             margin-bottom: 16px;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .section-subtitle {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             color: var(--text-muted);
-            max-width: 640px;
+            max-width: 660px;
             margin: 0 auto 48px;
             line-height: 1.7;
         }
@@ -146,17 +200,18 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 16px 0;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-light);
+            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
             transition: var(--transition);
         }
 
         .navbar.scrolled {
             padding: 12px 0;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+            background: rgba(255, 255, 255, 0.96);
         }
 
         .navbar .container {
@@ -168,22 +223,27 @@
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             color: var(--text-main);
         }
 
         .nav-brand img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .nav-brand:hover img {
+            transform: rotate(-6deg) scale(1.08);
         }
 
         .nav-brand span {
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-main);
         }
 
@@ -200,27 +260,56 @@
             font-size: 0.92rem;
             font-weight: 600;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; width: 0; height: 2px;
+            background: var(--primary-indigo);
+            transition: var(--transition);
+            border-radius: 2px;
         }
 
         .nav-links a:hover {
             color: var(--primary-indigo);
         }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .nav-cta {
-            padding: 10px 22px;
+            padding: 10px 24px;
             border-radius: var(--radius-pill);
             font-size: 0.88rem;
             font-weight: 700;
             text-decoration: none;
             color: #FFFFFF !important;
             background: var(--gradient-accent);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
         }
 
         .nav-toggle {
@@ -228,12 +317,12 @@
             background: none;
             border: none;
             color: var(--text-main);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             padding: 4px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 840px) {
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -242,8 +331,8 @@
                 left: 0;
                 right: 0;
                 background: #FFFFFF;
-                padding: 24px;
-                gap: 16px;
+                padding: 28px;
+                gap: 18px;
                 border-bottom: 1px solid var(--border-light);
                 box-shadow: var(--shadow-md);
             }
@@ -253,15 +342,21 @@
 
         /* ── APP MAIN BANNER ───────────────────────────────────────── */
         .app-main-banner {
-            background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 50%, #EFF6FF 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 60%, #EFF6FF 100%);
             border: 2px solid rgba(99, 102, 241, 0.22);
-            border-radius: 24px;
-            padding: 28px 32px;
-            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-            margin-bottom: 28px;
+            border-radius: 26px;
+            padding: 30px 36px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08), 0 0 30px rgba(99, 102, 241, 0.08);
+            margin-bottom: 32px;
             position: relative;
             overflow: hidden;
             text-align: left;
+            transition: var(--transition);
+        }
+
+        .app-main-banner:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 25px 55px rgba(15, 23, 42, 0.11), 0 0 40px rgba(99, 102, 241, 0.12);
         }
 
         .app-main-banner::before {
@@ -275,8 +370,8 @@
         .app-banner-header {
             display: flex;
             align-items: center;
-            gap: 22px;
-            margin-bottom: 20px;
+            gap: 24px;
+            margin-bottom: 22px;
         }
 
         .app-banner-logo-wrapper {
@@ -285,18 +380,19 @@
         }
 
         .app-banner-logo {
-            width: 90px;
-            height: 90px;
-            border-radius: 22px;
+            width: 92px;
+            height: 92px;
+            border-radius: 24px;
             object-fit: contain;
             background: #FFFFFF;
             padding: 6px;
             border: 2px solid var(--border-light);
-            box-shadow: 0 10px 25px rgba(116, 34, 132, 0.18);
+            box-shadow: 0 12px 28px rgba(116, 34, 132, 0.18);
+            transition: var(--transition);
         }
 
-        .app-banner-info {
-            flex: 1;
+        .app-main-banner:hover .app-banner-logo {
+            transform: scale(1.05) rotate(-3deg);
         }
 
         .app-banner-meta-row {
@@ -309,7 +405,7 @@
 
         .app-banner-title {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.9rem, 4vw, 2.7rem);
+            font-size: clamp(2rem, 4.2vw, 2.9rem);
             font-weight: 900;
             line-height: 1.1;
             background: linear-gradient(135deg, #742284 0%, #4F46E5 55%, #0EA5E9 100%);
@@ -320,7 +416,7 @@
         }
 
         .app-banner-tagline {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             font-weight: 700;
             color: var(--text-main);
         }
@@ -328,140 +424,189 @@
         .app-banner-wallets {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding-top: 16px;
+            gap: 16px;
+            padding-top: 18px;
             border-top: 1px solid var(--border-light);
             flex-wrap: wrap;
         }
 
         .app-banner-wallets-label {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-subtle);
         }
 
-        .app-banner-wallets img {
-            height: 38px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 10px;
-            background: #FFFFFF;
-            padding: 4px 12px;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
+        /* Compatible Wallet Badge Pills */
+        .wallet-pills-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .wallet-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
+            font-size: 0.84rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.3px;
+        }
+
+        .wallet-pill:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.15);
+        }
+
+        .wallet-yape {
+            background: linear-gradient(135deg, #742284 0%, #8E2A9D 100%);
+        }
+
+        .wallet-plin {
+            background: linear-gradient(135deg, #00C389 0%, #009668 100%);
+        }
+
+        .wallet-bbva {
+            background: linear-gradient(135deg, #004481 0%, #1464A5 100%);
+        }
+
+        .wallet-sip {
+            background: linear-gradient(135deg, #008A00 0%, #05B305 100%);
+        }
+
+        .wallet-agora {
+            background: linear-gradient(135deg, #FF9900 0%, #E68A00 100%);
+        }
+
+        .wallet-lemon {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
         }
 
         @media (max-width: 640px) {
-            .app-main-banner {
-                padding: 22px 18px;
-            }
-            .app-banner-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
-            }
-            .app-banner-logo {
-                width: 72px;
-                height: 72px;
-            }
-            .app-banner-wallets {
-                justify-content: center;
-            }
+            .app-main-banner { padding: 22px 18px; }
+            .app-banner-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+            .app-banner-logo { width: 76px; height: 76px; }
+            .app-banner-wallets { justify-content: center; }
+            .wallet-pills-row { justify-content: center; }
         }
 
-        /* ── HERO ──────────────────────────────────────────────────── */
+        /* ── HERO & ANIMATED MOCKUP ───────────────────────────────── */
         .hero {
-            min-height: 90vh;
+            min-height: 92vh;
             display: flex;
             align-items: center;
-            padding: 130px 0 80px;
+            padding: 140px 0 90px;
             background: var(--gradient-hero);
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Light Orbs */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%; right: 10%;
+            width: 450px; height: 450px;
+            background: var(--gradient-glow);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(40px);
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+            50% { transform: scale(1.15) translate(-20px, 20px); opacity: 0.9; }
+            100% { transform: scale(1) translate(0, 0); opacity: 0.6; }
         }
 
         .hero .container {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-columns: 1.15fr 0.85fr;
             gap: 60px;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: var(--radius-pill);
             background: #FFFFFF;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-sm);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary-indigo);
             margin-bottom: 24px;
         }
 
-        .hero-badge .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary-plin);
-        }
-
         .hero h1 {
-            font-size: clamp(2.3rem, 5vw, 3.5rem);
+            font-size: clamp(2.4rem, 5.2vw, 3.6rem);
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .hero-desc {
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             color: var(--text-muted);
-            margin-bottom: 32px;
-            max-width: 500px;
-            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 520px;
+            line-height: 1.75;
         }
 
         .hero-actions {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 30px;
+            gap: 12px;
+            padding: 16px 34px;
             border-radius: var(--radius-pill);
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 0.98rem;
+            font-weight: 800;
             text-decoration: none;
             color: #FFFFFF;
             background: var(--gradient-accent);
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.28);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.32);
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.38);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 30px;
+            gap: 12px;
+            padding: 16px 32px;
             border-radius: var(--radius-pill);
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 700;
             text-decoration: none;
             color: var(--text-main);
@@ -475,40 +620,71 @@
         .btn-secondary:hover {
             border-color: var(--primary-indigo);
             color: var(--primary-indigo);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
+        }
+
+        /* Hero Live Sound Test Button */
+        .btn-sound-demo {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #FFFFFF;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            border: none;
+        }
+        .btn-sound-demo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(16, 185, 129, 0.45);
         }
 
         .hero-stats {
             display: flex;
-            gap: 36px;
+            gap: 40px;
         }
 
         .stat-number {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.9rem;
+            font-weight: 900;
             color: var(--primary-indigo);
+            line-height: 1;
+            margin-bottom: 4px;
         }
 
         .stat-label {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-subtle);
         }
 
+        /* Dynamic Phone Mockup Container */
         .hero-visual {
             position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-phone-wrapper {
+            position: relative;
+            animation: floatHero 6s ease-in-out infinite;
+        }
+
+        @keyframes floatHero {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-14px) rotate(0.8deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         .hero-phone {
             width: 100%;
-            max-width: 350px;
+            max-width: 340px;
             margin: 0 auto;
-            border-radius: 28px;
+            border-radius: 36px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
-            border: 6px solid #FFFFFF;
+            box-shadow: 0 30px 70px rgba(15, 23, 42, 0.2), 0 0 40px rgba(99, 102, 241, 0.15);
+            border: 8px solid #FFFFFF;
+            background: #FFFFFF;
+            position: relative;
+            transition: var(--transition);
         }
 
         .hero-phone img {
@@ -516,17 +692,65 @@
             display: block;
         }
 
-        @media (max-width: 768px) {
+        /* Interactive Notification Sound Toast Overlay */
+        .demo-toast {
+            position: absolute;
+            top: 20px; left: 16px; right: 16px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 14px 18px;
+            border: 1.5px solid var(--primary-purple);
+            box-shadow: 0 12px 30px rgba(116, 34, 132, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(-120%);
+            opacity: 0;
+            transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .demo-toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .demo-toast-icon {
+            width: 38px; height: 38px;
+            border-radius: 12px;
+            background: #742284;
+            color: #FFFFFF;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .demo-toast-title {
+            font-weight: 800;
+            font-size: 0.88rem;
+            color: #742284;
+            margin-bottom: 2px;
+        }
+
+        .demo-toast-text {
+            font-size: 0.82rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        @media (max-width: 840px) {
             .hero .container { grid-template-columns: 1fr; text-align: center; }
-            .hero-desc { margin: 0 auto 32px; }
+            .hero-desc { margin: 0 auto 36px; }
             .hero-actions { justify-content: center; }
             .hero-stats { justify-content: center; }
-            .hero-phone { max-width: 260px; }
+            .hero-phone { max-width: 270px; }
         }
 
         /* ── TRUST BAR ─────────────────────────────────────────────── */
         .trust-bar {
-            padding: 32px 0;
+            padding: 36px 0;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -535,7 +759,7 @@
         .trust-items {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 48px;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -543,68 +767,104 @@
         .trust-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: var(--text-muted);
-            font-size: 0.92rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .trust-item:hover {
+            color: var(--primary-indigo);
+            transform: translateY(-2px);
+        }
+
+        .trust-icon-box {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.08);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
         }
 
         /* ── FEATURES ──────────────────────────────────────────────── */
         .features {
-            padding: 100px 0;
+            padding: 110px 0;
             background: var(--bg-body);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px;
+            margin-top: 52px;
         }
 
         .feature-card {
             background: #FFFFFF;
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
-            padding: 32px;
+            padding: 36px 30px;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 0;
+            background: var(--gradient-accent);
+            transition: var(--transition);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-md);
             border-color: rgba(99, 102, 241, 0.3);
         }
 
+        .feature-card:hover::before {
+            height: 100%;
+        }
+
         .feature-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            background: rgba(99, 102, 241, 0.06);
+            font-size: 1.6rem;
+            margin-bottom: 22px;
+            background: rgba(99, 102, 241, 0.08);
             color: var(--primary-indigo);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(6deg);
+            background: var(--primary-indigo);
+            color: #FFFFFF;
         }
 
         .feature-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 12px;
         }
 
         .feature-card p {
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        /* ── NOVEDADES P2P & TELEGRAM ──────────────────────────────── */
+        /* ── RED P2P & TELEGRAM ────────────────────────────────────── */
         .p2p-telegram {
-            padding: 100px 0;
+            padding: 110px 0;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -613,13 +873,20 @@
         .p2p-step-box {
             background: var(--bg-surface-alt);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            padding: 40px;
-            margin-top: 32px;
+            border-radius: 24px;
+            padding: 44px;
+            margin-top: 36px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 48px;
             align-items: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .p2p-step-box:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(99, 102, 241, 0.25);
         }
 
         .p2p-step-box.reverse {
@@ -632,67 +899,88 @@
         .p2p-step-box img {
             max-width: 100%;
             max-height: 440px;
-            border-radius: 16px;
+            border-radius: 18px;
             box-shadow: var(--shadow-md);
-            border: 4px solid #FFFFFF;
+            border: 5px solid #FFFFFF;
+            transition: var(--transition);
         }
 
-        @media (max-width: 768px) {
-            .p2p-step-box { grid-template-columns: 1fr; text-align: center; }
+        .p2p-step-box:hover img {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 840px) {
+            .p2p-step-box { grid-template-columns: 1fr; text-align: center; padding: 28px; }
             .p2p-step-box.reverse { direction: ltr; }
         }
 
         /* ── CÓMO FUNCIONA ─────────────────────────────────────────── */
         .how-it-works {
-            padding: 100px 0;
+            padding: 110px 0;
             background: var(--bg-body);
         }
 
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            margin-top: 52px;
         }
 
         .step-card {
             background: #FFFFFF;
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
-            padding: 36px 24px;
+            padding: 40px 28px;
             text-align: center;
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-indigo);
         }
 
         .step-number {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
+            font-size: 1.3rem;
+            font-weight: 900;
             background: var(--gradient-accent);
             color: #FFFFFF;
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+            transition: var(--transition);
+        }
+
+        .step-card:hover .step-number {
+            transform: scale(1.15) rotate(360deg);
         }
 
         .step-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
         }
 
         .step-card p {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             color: var(--text-muted);
+            line-height: 1.65;
         }
 
         /* ── CAPTURAS ──────────────────────────────────────────────── */
         .screenshots {
-            padding: 100px 0;
+            padding: 110px 0;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -702,22 +990,25 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 24px;
-            padding: 24px 0;
+            gap: 28px;
+            padding: 28px 0;
         }
 
         .screenshot-item {
             flex: 0 1 230px;
-            border-radius: 20px;
+            border-radius: 22px;
             overflow: hidden;
-            border: 3px solid var(--border-light);
+            border: 4px solid var(--border-light);
             box-shadow: var(--shadow-md);
             transition: var(--transition);
+            cursor: pointer;
+            position: relative;
         }
 
         .screenshot-item:hover {
-            transform: scale(1.04);
+            transform: scale(1.06) translateY(-6px);
             border-color: var(--primary-indigo);
+            box-shadow: var(--shadow-lg);
         }
 
         .screenshot-item img {
@@ -727,45 +1018,53 @@
 
         /* ── TUTORIALES (YOUTUBE & TIKTOK) ─────────────────────────── */
         .videos {
-            padding: 100px 0;
+            padding: 110px 0;
             background: var(--bg-body);
         }
 
         .video-tabs {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
         }
 
         .video-tab {
-            padding: 10px 24px;
+            padding: 12px 26px;
             border-radius: var(--radius-pill);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 700;
             background: #FFFFFF;
             border: 1px solid var(--border-light);
             color: var(--text-muted);
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
 
         .video-tab.active, .video-tab:hover {
             background: var(--primary-indigo);
             color: #FFFFFF;
             border-color: var(--primary-indigo);
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
         }
 
         .video-container {
             max-width: 400px;
             width: 100%;
             margin: 0 auto;
-            border-radius: var(--radius);
+            border-radius: 24px;
             overflow: hidden;
             background: #FFFFFF;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .video-container:hover {
+            box-shadow: var(--shadow-lg);
         }
 
         .video-wrapper {
@@ -783,29 +1082,15 @@
         .video-panel { display: none; }
         .video-panel.active { display: block; }
         .video-caption {
-            padding: 18px;
-            font-size: 0.9rem;
+            padding: 20px;
+            font-size: 0.92rem;
             color: var(--text-muted);
             text-align: center;
         }
 
-        .pending-badge-banner {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            border-radius: var(--radius-pill);
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            color: #D97706;
-            font-size: 0.78rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
         /* ── PLANES Y PRECIOS ──────────────────────────────────────── */
         .pricing {
-            padding: 100px 0;
+            padding: 110px 0;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -814,16 +1099,16 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            max-width: 1100px;
+            gap: 26px;
+            max-width: 1160px;
             margin: 0 auto;
         }
 
         .price-card {
             background: #FFFFFF;
             border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            padding: 36px 28px;
+            border-radius: 24px;
+            padding: 38px 28px;
             text-align: center;
             transition: var(--transition);
             position: relative;
@@ -835,16 +1120,17 @@
 
         .price-card.featured {
             border-color: var(--primary-indigo);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 16px 40px rgba(99, 102, 241, 0.15);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
         }
 
         .price-card.featured::before {
             content: 'RECOMENDADO';
             position: absolute;
-            top: 14px; right: -32px;
+            top: 16px; right: -32px;
             padding: 4px 44px;
             font-size: 0.65rem;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 1px;
             background: var(--gradient-accent);
             color: #FFFFFF;
@@ -852,50 +1138,50 @@
         }
 
         .price-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-md);
         }
 
         .price-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 800;
             margin-bottom: 6px;
         }
 
         .price-tag {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 800;
+            font-size: 2.7rem;
+            font-weight: 900;
             color: var(--primary-indigo);
             margin: 16px 0;
         }
 
         .price-tag small {
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-subtle);
         }
 
         .retention-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: var(--radius-pill);
             background: rgba(99, 102, 241, 0.08);
             color: var(--primary-indigo);
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 18px;
         }
 
         .price-features {
             list-style: none;
             text-align: left;
-            margin: 16px 0 28px;
+            margin: 18px 0 30px;
         }
 
         .price-features li {
-            padding: 8px 0;
-            font-size: 0.88rem;
+            padding: 9px 0;
+            font-size: 0.9rem;
             color: var(--text-muted);
             display: flex;
             align-items: center;
@@ -905,29 +1191,35 @@
         .price-features li::before {
             content: '✓';
             color: var(--primary-plin);
-            font-weight: 800;
-            font-size: 1rem;
+            font-weight: 900;
+            font-size: 1.1rem;
         }
 
         /* ── GUÍA DE INSTALACIÓN ───────────────────────────────────── */
         .install-guide {
-            padding: 100px 0;
+            padding: 110px 0;
             background: var(--bg-body);
         }
 
         .guide-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 52px;
             align-items: center;
-            margin-top: 48px;
+            margin-top: 52px;
         }
 
         .guide-image {
-            border-radius: var(--radius);
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-light);
             box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .guide-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
         }
 
         .guide-image img { width: 100%; display: block; }
@@ -935,62 +1227,69 @@
         .guide-steps { list-style: none; }
 
         .guide-steps li {
-            padding: 14px 0;
+            padding: 16px 0;
             border-bottom: 1px solid var(--border-light);
             display: flex;
-            gap: 14px;
+            gap: 16px;
             align-items: flex-start;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
         }
 
         .guide-step-num {
             flex: 0 0 auto;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--primary-indigo);
             color: #FFFFFF;
-            font-weight: 800;
-            font-size: 0.85rem;
+            font-weight: 900;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
         }
 
-        @media (max-width: 768px) { .guide-content { grid-template-columns: 1fr; } }
+        @media (max-width: 840px) { .guide-content { grid-template-columns: 1fr; } }
 
         /* ── FAQ ────────────────────────────────────────────────────── */
         .faq {
-            padding: 100px 0;
+            padding: 110px 0;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
         }
 
         .faq-list {
-            max-width: 760px;
-            margin: 48px auto 0;
+            max-width: 800px;
+            margin: 52px auto 0;
         }
 
         .faq-item {
             border: 1px solid var(--border-light);
             border-radius: var(--radius-sm);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             overflow: hidden;
             background: #FFFFFF;
+            transition: var(--transition);
+        }
+
+        .faq-item.open {
+            border-color: var(--primary-indigo);
+            box-shadow: var(--shadow-sm);
         }
 
         .faq-question {
             width: 100%;
-            padding: 20px 24px;
+            padding: 22px 26px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: transparent;
             border: none;
             color: var(--text-main);
-            font-size: 0.98rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 800;
             cursor: pointer;
             text-align: left;
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1010,45 +1309,52 @@
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.35s ease;
-            padding: 0 24px;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+            padding: 0 26px;
         }
 
         .faq-item.open .faq-answer {
-            max-height: 300px;
-            padding: 0 24px 20px;
+            max-height: 320px;
+            padding: 0 26px 24px;
         }
 
         .faq-answer p {
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             color: var(--text-muted);
             line-height: 1.7;
         }
 
         /* ── CTA / BANNER FINAL ────────────────────────────────────── */
         .cta-banner {
-            padding: 100px 0;
+            padding: 110px 0;
             background: var(--bg-surface-alt);
             border-top: 1px solid var(--border-light);
             text-align: center;
         }
 
         .cta-qr {
-            width: 150px;
-            height: 150px;
-            border-radius: var(--radius);
+            width: 160px;
+            height: 160px;
+            border-radius: 20px;
             border: 2px solid var(--border-light);
             background: #FFFFFF;
-            padding: 8px;
+            padding: 10px;
             box-shadow: var(--shadow-sm);
-            margin: 0 auto 12px;
+            margin: 0 auto 14px;
+            transition: var(--transition);
+        }
+
+        .cta-qr:hover {
+            transform: scale(1.06);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-indigo);
         }
 
         .cta-qr img { width: 100%; height: 100%; object-fit: contain; }
 
         /* ── FOOTER ────────────────────────────────────────────────── */
         .footer {
-            padding: 60px 0 30px;
+            padding: 70px 0 35px;
             background: #FFFFFF;
             border-top: 1px solid var(--border-light);
         }
@@ -1056,73 +1362,99 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 48px;
+            margin-bottom: 48px;
         }
 
         .footer-brand p {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-top: 12px;
-            max-width: 320px;
-            line-height: 1.6;
+            margin-top: 14px;
+            max-width: 340px;
+            line-height: 1.65;
         }
 
         .footer-col h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-size: 0.98rem;
+            font-weight: 800;
+            margin-bottom: 18px;
             color: var(--text-main);
         }
 
         .footer-col a {
             display: block;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-decoration: none;
-            padding: 4px 0;
+            padding: 5px 0;
             transition: var(--transition);
         }
 
-        .footer-col a:hover { color: var(--primary-indigo); }
+        .footer-col a:hover { color: var(--primary-indigo); transform: translateX(3px); }
 
         .footer-bottom {
-            padding-top: 24px;
+            padding-top: 28px;
             border-top: 1px solid var(--border-light);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .footer-bottom p { font-size: 0.85rem; color: var(--text-subtle); }
+        .footer-bottom p { font-size: 0.88rem; color: var(--text-subtle); }
 
-        /* Floating WhatsApp */
+        /* Floating WhatsApp Button */
         .whatsapp-float {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
+            bottom: 28px;
+            right: 28px;
+            width: 60px;
+            height: 60px;
             background-color: #25D366;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
             z-index: 9999;
             transition: var(--transition);
             text-decoration: none;
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
         }
 
-        .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: currentColor; }
+
+        /* Mobile Sticky Bottom Download Bar */
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            padding: 12px 20px;
+            border-top: 1px solid var(--border-light);
+            box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.1);
+            z-index: 999;
+            text-align: center;
+            transition: var(--transition);
+            transform: translateY(100%);
+        }
+
+        .mobile-sticky-bar.visible {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-sticky-bar { display: block; }
+            .whatsapp-float { bottom: 80px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
     </style>
 </head>
 <body>
@@ -1148,10 +1480,10 @@
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO SECTION WITH INTERACTIVE SOUND DEMO WIDGET -->
 <section class="hero" id="inicio">
     <div class="container">
-        <div class="hero-content">
+        <div class="hero-content reveal-left">
             <!-- APP MAIN BANNER -->
             <div class="app-main-banner">
                 <div class="app-banner-header">
@@ -1161,8 +1493,8 @@
                     <div class="app-banner-info">
                         <div class="app-banner-meta-row">
                             <div class="hero-badge" style="margin-bottom: 0;">
-                                <span class="dot"></span>
-                                Versión 2.3.1
+                                <span class="pulse-green-dot"></span>
+                                Versión 2.5.2 Oficial
                             </div>
                             <div class="hero-badge" style="margin-bottom: 0; background: linear-gradient(135deg, rgba(116, 34, 132, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%); border-color: rgba(116, 34, 132, 0.25); color: var(--primary-purple);">
                                 <img src="assets/Nueva versión/logo_TI.png" alt="Tech Innova Logo" style="height: 16px; width: auto; vertical-align: middle; margin-right: 4px;">
@@ -1170,12 +1502,19 @@
                             </div>
                         </div>
                         <h1 class="app-banner-title">YAPE VOICE NOTIFIER</h1>
-                        <p class="app-banner-tagline">✨ Recibe tu pago. Escúchalo al instante.</p>
+                        <p class="app-banner-tagline">✨ Recibe tu pago. Escúchalo al instante en voz alta.</p>
                     </div>
                 </div>
                 <div class="app-banner-wallets">
                     <span class="app-banner-wallets-label">Billeteras compatibles:</span>
-                    <img src="assets/Nueva versión/Baner.png" alt="Logos de billeteras compatibles: Yape, Plin, BBVA, SIP, Agora, Lemon">
+                    <div class="wallet-pills-row">
+                        <span class="wallet-pill wallet-yape">💜 Yape</span>
+                        <span class="wallet-pill wallet-plin">💚 Plin</span>
+                        <span class="wallet-pill wallet-bbva">💙 BBVA</span>
+                        <span class="wallet-pill wallet-sip">🟢 SIP / Interbank</span>
+                        <span class="wallet-pill wallet-agora">🟠 Agora</span>
+                        <span class="wallet-pill wallet-lemon">🟩 Lemon</span>
+                    </div>
                 </div>
             </div>
 
@@ -1190,13 +1529,16 @@
                 <a href="#descargar" class="btn-primary">
                     📥 Descargar APK Directa
                 </a>
+                <button id="btnTestSound" class="btn-primary btn-sound-demo">
+                    🔊 Probar Sonido en Vivo
+                </button>
                 <a href="#videos" class="btn-secondary">
                     ▶ Ver Tutoriales
                 </a>
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-number">100%</div>
+                    <div class="stat-number counter" data-target="100">0%</div>
                     <div class="stat-label">Privado y local</div>
                 </div>
                 <div class="stat">
@@ -1207,25 +1549,41 @@
                     <div class="stat-number">&lt; 1s</div>
                     <div class="stat-label">Tiempo de respuesta</div>
                 </div>
+                <div class="stat">
+                    <div class="stat-number">60 Días</div>
+                    <div class="stat-label">Historial en tu plan</div>
+                </div>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="hero-phone">
-                <img src="assets/Nueva versión/Screen_1.jpeg" alt="YapeVoice Notifier pantalla principal">
+
+        <!-- DYNAMIC HERO PHONE MOCKUP WITH INTERACTIVE TOAST -->
+        <div class="hero-visual reveal-right">
+            <div class="hero-phone-wrapper">
+                <div class="hero-phone">
+                    <!-- Live Payment Toast Overlay triggered by Sound Demo Button -->
+                    <div class="demo-toast" id="demoToast">
+                        <div class="demo-toast-icon">💜</div>
+                        <div>
+                            <div class="demo-toast-title">Yape Recibido</div>
+                            <div class="demo-toast-text" id="demoToastText">Te yapeó S/ 45.00 María Carmen</div>
+                        </div>
+                    </div>
+                    <img src="assets/Nueva versión/Screen_1.jpeg" alt="YapeVoice Notifier pantalla principal">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- TRUST BAR -->
-<section class="trust-bar">
+<section class="trust-bar reveal">
     <div class="container">
         <div class="trust-items">
-            <div class="trust-item"><span>🔒</span> Procesamiento 100% local</div>
-            <div class="trust-item"><span>📡</span> Funciona sin internet</div>
-            <div class="trust-item"><span>🏢</span> Respaldado por Tech Innova</div>
-            <div class="trust-item"><span>⚡</span> Anuncio en menos de 1 seg</div>
-            <div class="trust-item"><span>🇵🇪</span> Hecho en Perú</div>
+            <div class="trust-item"><div class="trust-icon-box">🔒</div> Procesamiento 100% local</div>
+            <div class="trust-item"><div class="trust-icon-box">📡</div> Funciona sin internet</div>
+            <div class="trust-item"><div class="trust-icon-box">🏢</div> Respaldado por Tech Innova</div>
+            <div class="trust-item"><div class="trust-icon-box">⚡</div> Anuncio en menos de 1 seg</div>
+            <div class="trust-item"><div class="trust-icon-box">🇵🇪</div> Hecho en Perú</div>
         </div>
     </div>
 </section>
@@ -1233,40 +1591,40 @@
 <!-- FEATURES -->
 <section class="features" id="features">
     <div class="container text-center">
-        <span class="section-badge">Características</span>
-        <h2 class="section-title">Todo lo que necesitas para <span class="text-indigo">cobrar sin distracciones</span></h2>
-        <p class="section-subtitle">Diseñado para bodegas, restaurantes, vendedores y negocios que reciben pagos con billeteras digitales.</p>
+        <span class="section-badge reveal">Características</span>
+        <h2 class="section-title reveal delay-1">Todo lo que necesitas para <span class="text-indigo">cobrar sin distracciones</span></h2>
+        <p class="section-subtitle reveal delay-2">Diseñado para bodegas, restaurantes, vendedores y negocios que reciben pagos con billeteras digitales.</p>
         
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card reveal delay-1">
                 <div class="feature-icon">🔊</div>
                 <h3>Anuncios por Voz</h3>
                 <p>Escucha el nombre del cliente y el monto exacto ingresado en tiempo real. Atiende sin soltar lo que estás haciendo.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-2">
                 <div class="feature-icon">📡</div>
                 <h3>100% Offline</h3>
                 <p>El sintetizador de voz se ejecuta dentro del teléfono. No requiere conexión a internet para anunciar notificaciones locales.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-3">
                 <div class="feature-icon">🔐</div>
                 <h3>Privacidad Garantizada</h3>
                 <p>No almacenamos claves ni datos bancarios. La app procesa el texto de notificaciones sin salir de tu dispositivo.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-1">
                 <div class="feature-icon">👥</div>
                 <h3>Red P2P Cajas &amp; Meseros</h3>
                 <p>Vincula un dispositivo Emisor (Caja) con múltiples Receptores (Colaboradores) para que todos escuchen los cobros.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-2">
                 <div class="feature-icon">🛡️</div>
                 <h3>Filtro Anti-Spam</h3>
                 <p>Descarta alertas bancarias no financieras o publicidad, anunciando únicamente pagos reales recibidos.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal delay-3">
                 <div class="feature-icon">📲</div>
                 <h3>Multibilletera Compatible</h3>
-                <p>Soporte optimizado para Yape, Plin, Tunki, Agora y notificaciones bancarias de Perú.</p>
+                <p>Soporte optimizado para Yape, Plin, BBVA, SIP, Agora y notificaciones bancarias de Perú.</p>
             </div>
         </div>
     </div>
@@ -1275,11 +1633,11 @@
 <!-- RED P2P & TELEGRAM -->
 <section class="p2p-telegram" id="p2p">
     <div class="container text-center">
-        <span class="section-badge">Red P2P &amp; Automatización</span>
-        <h2 class="section-title">Conecta tu negocio en <span class="text-indigo">tiempo real</span></h2>
-        <p class="section-subtitle">Sincroniza la caja principal con el personal de atención y recibe reportes en Telegram.</p>
+        <span class="section-badge reveal">Red P2P &amp; Automatización</span>
+        <h2 class="section-title reveal delay-1">Conecta tu negocio en <span class="text-indigo">tiempo real</span></h2>
+        <p class="section-subtitle reveal delay-2">Sincroniza la caja principal con el personal de atención y recibe reportes en Telegram.</p>
         
-        <div class="p2p-step-box">
+        <div class="p2p-step-box reveal delay-1">
             <div style="text-align: left;">
                 <span class="section-badge">Paso 1</span>
                 <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;">Emisor (Caja Principal)</h3>
@@ -1296,7 +1654,7 @@
             </div>
         </div>
 
-        <div class="p2p-step-box reverse">
+        <div class="p2p-step-box reverse reveal delay-2">
             <div style="text-align: left;">
                 <span class="section-badge">Paso 2</span>
                 <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;">Receptores (Meseros / Personal)</h3>
@@ -1318,22 +1676,22 @@
 <!-- CÓMO FUNCIONA -->
 <section class="how-it-works" id="como-funciona">
     <div class="container text-center">
-        <span class="section-badge">Cómo funciona</span>
-        <h2 class="section-title">Actívalo en <span class="text-indigo">3 pasos sencillos</span></h2>
-        <p class="section-subtitle">La instalación toma menos de 2 minutos. Empieza a usarlo hoy mismo.</p>
+        <span class="section-badge reveal">Cómo funciona</span>
+        <h2 class="section-title reveal delay-1">Actívalo en <span class="text-indigo">3 pasos sencillos</span></h2>
+        <p class="section-subtitle reveal delay-2">La instalación toma menos de 2 minutos. Empieza a usarlo hoy mismo.</p>
         
         <div class="steps-grid">
-            <div class="step-card">
+            <div class="step-card reveal delay-1">
                 <div class="step-number">1</div>
                 <h3>Descarga el APK</h3>
                 <p>Descarga la aplicación directa desde el botón oficial de la página.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card reveal delay-2">
                 <div class="step-number">2</div>
                 <h3>Concede Permisos</h3>
                 <p>Activa el acceso a notificaciones y desactiva la optimización de batería.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card reveal delay-3">
                 <div class="step-number">3</div>
                 <h3>¡Listo para Cobrar!</h3>
                 <p>Cada Yape o Plin recibido será anunciado en voz alta automáticamente.</p>
@@ -1345,16 +1703,16 @@
 <!-- CAPTURAS DE PANTALLA -->
 <section class="screenshots" id="screenshots">
     <div class="container text-center">
-        <span class="section-badge">Capturas</span>
-        <h2 class="section-title">Interfaz <span class="text-indigo">Limpia y Moderna</span></h2>
-        <p class="section-subtitle">Diseñada para una navegación clara, rápida y sin saturación visual.</p>
+        <span class="section-badge reveal">Capturas</span>
+        <h2 class="section-title reveal delay-1">Interfaz <span class="text-indigo">Limpia y Moderna</span></h2>
+        <p class="section-subtitle reveal delay-2">Diseñada para una navegación clara, rápida y sin saturación visual.</p>
         
         <div class="screenshots-scroll">
-            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_1.jpeg" alt="Pantalla Principal"></div>
-            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_2.jpeg" alt="Configuración de Voz"></div>
-            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_3.jpeg" alt="Historial de Pagos"></div>
-            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_4.jpeg" alt="Panel de Ajustes"></div>
-            <div class="screenshot-item"><img src="assets/Nueva versión/Screen_5.jpeg" alt="Ajustes Avanzados"></div>
+            <div class="screenshot-item reveal-scale delay-1"><img src="assets/Nueva versión/Screen_1.jpeg" alt="Pantalla Principal"></div>
+            <div class="screenshot-item reveal-scale delay-2"><img src="assets/Nueva versión/Screen_2.jpeg" alt="Configuración de Voz"></div>
+            <div class="screenshot-item reveal-scale delay-3"><img src="assets/Nueva versión/Screen_3.jpeg" alt="Historial de Pagos"></div>
+            <div class="screenshot-item reveal-scale delay-1"><img src="assets/Nueva versión/Screen_4.jpeg" alt="Panel de Ajustes"></div>
+            <div class="screenshot-item reveal-scale delay-2"><img src="assets/Nueva versión/Screen_5.jpeg" alt="Ajustes Avanzados"></div>
         </div>
     </div>
 </section>
@@ -1362,11 +1720,11 @@
 <!-- TUTORIALES Y VIDEOS -->
 <section class="videos" id="videos">
     <div class="container text-center">
-        <span class="section-badge">Tutoriales &amp; Guías</span>
-        <h2 class="section-title">Aprende a usar <span class="text-indigo">YapeVoice</span></h2>
-        <p class="section-subtitle">Videos instructivos paso a paso para configurar tu aplicación.</p>
+        <span class="section-badge reveal">Tutoriales &amp; Guías</span>
+        <h2 class="section-title reveal delay-1">Aprende a usar <span class="text-indigo">YapeVoice</span></h2>
+        <p class="section-subtitle reveal delay-2">Videos instructivos paso a paso para configurar tu aplicación.</p>
         
-        <div class="video-tabs">
+        <div class="video-tabs reveal delay-2">
             <button class="video-tab active" data-tab="tab-conocer">1. Conocer la App</button>
             <button class="video-tab" data-tab="tab-instalar">2. Instalación Paso a Paso</button>
             <button class="video-tab" data-tab="tab-premium">3. Activar Licencia</button>
@@ -1406,11 +1764,11 @@
         </div>
 
         <!-- Enlaces y Canales Oficiales de la Marca -->
-        <div style="margin-top: 48px; text-align: center;">
+        <div style="margin-top: 52px; text-align: center;" class="reveal delay-2">
             <div class="section-badge" style="background: rgba(14, 165, 233, 0.1); border-color: rgba(14, 165, 233, 0.3); color: var(--primary-cyan);">
                 <span>🌐 SITIOS Y CANALES OFICIALES DE LA MARCA</span>
             </div>
-            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin: 12px auto 20px;">
+            <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 620px; margin: 12px auto 22px;">
                 Explora nuestros portales web oficiales y síguenos en nuestras redes sociales para obtener más guías, productos y soluciones de <strong>Tech Innova</strong>.
             </p>
             <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
@@ -1434,21 +1792,21 @@
 <!-- PLANES Y PRECIOS -->
 <section class="pricing" id="planes">
     <div class="container text-center">
-        <span class="section-badge">Planes de Suscripción</span>
-        <h2 class="section-title">Elige el plan <span class="text-indigo">adecuado para tu negocio</span></h2>
-        <p class="section-subtitle">Precios transparentes. Retención de historial adaptada a tus necesidades de control.</p>
+        <span class="section-badge reveal">Planes de Suscripción</span>
+        <h2 class="section-title reveal delay-1">Elige el plan <span class="text-indigo">adecuado para tu negocio</span></h2>
+        <p class="section-subtitle reveal delay-2">Precios transparentes. Retención de historial de 60 días para el control total de tus cobros.</p>
 
         <div class="pricing-grid">
             <!-- Plan Gratis -->
-            <div class="price-card">
+            <div class="price-card reveal delay-1">
                 <div>
                     <h3>Prueba Gratuita</h3>
                     <p style="color: var(--text-subtle); font-size: 0.88rem;">Para evaluar la app</p>
                     <div class="price-tag">S/ 0.00 <small>/ libre</small></div>
-                    <div class="retention-badge">🕒 Retención: 24 Horas</div>
+                    <div class="retention-badge">🕒 Retención: 14 Días</div>
                     <ul class="price-features">
                         <li>5 anuncios de voz al día</li>
-                        <li>Retención de historial: 24 horas</li>
+                        <li>Retención de historial: 14 días</li>
                         <li>Soporte básico</li>
                     </ul>
                 </div>
@@ -1456,15 +1814,15 @@
             </div>
 
             <!-- Personal Mensual -->
-            <div class="price-card">
+            <div class="price-card reveal delay-2">
                 <div>
                     <h3>Personal Mensual</h3>
                     <p style="color: var(--text-subtle); font-size: 0.88rem;">1 Dispositivo Solitario</p>
                     <div class="price-tag">S/ 4.90 <small>/ mes</small></div>
-                    <div class="retention-badge">🕒 Retención: 7 Días</div>
+                    <div class="retention-badge">🕒 Retención: 60 Días</div>
                     <ul class="price-features">
                         <li>Anuncios por voz ilimitados</li>
-                        <li><strong>Retención de historial: 7 Días</strong></li>
+                        <li><strong>Retención de historial: 60 Días</strong></li>
                         <li>Webhooks de Telegram ilimitados</li>
                         <li>Soporte directo por WhatsApp</li>
                     </ul>
@@ -1473,15 +1831,15 @@
             </div>
 
             <!-- Personal Anual -->
-            <div class="price-card">
+            <div class="price-card reveal delay-3">
                 <div>
                     <h3>Personal Anual</h3>
                     <p style="color: var(--text-subtle); font-size: 0.88rem;">Mayor ahorro para 1 equipo</p>
                     <div class="price-tag">S/ 14.90 <small>/ año</small></div>
-                    <div class="retention-badge">🕒 Retención: 7 Días</div>
+                    <div class="retention-badge">🕒 Retención: 60 Días</div>
                     <ul class="price-features">
                         <li>Anuncios por voz ilimitados</li>
-                        <li><strong>Retención de historial: 7 Días</strong></li>
+                        <li><strong>Retención de historial: 60 Días</strong></li>
                         <li>Webhooks de Telegram ilimitados</li>
                         <li>Soporte prioritario</li>
                     </ul>
@@ -1490,15 +1848,15 @@
             </div>
 
             <!-- Premium Mensual (P2P) -->
-            <div class="price-card featured">
+            <div class="price-card featured reveal delay-1">
                 <div>
                     <h3>Premium Mensual</h3>
                     <p style="color: var(--text-subtle); font-size: 0.88rem;">Red P2P Cajas &amp; Meseros</p>
                     <div class="price-tag">S/ 9.90 <small>/ mes</small></div>
-                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 30 Días</div>
+                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 60 Días</div>
                     <ul class="price-features">
                         <li><strong>Red P2P (Emisor + Receptores)</strong></li>
-                        <li><strong>Retención de historial: 30 Días</strong></li>
+                        <li><strong>Retención de historial: 60 Días</strong></li>
                         <li>Gestión de cupos flotantes</li>
                         <li>Webhooks de Telegram</li>
                         <li>Soporte técnico preferencial</li>
@@ -1508,15 +1866,15 @@
             </div>
 
             <!-- Premium Anual (P2P) -->
-            <div class="price-card featured">
+            <div class="price-card featured reveal delay-2">
                 <div>
                     <h3>Premium Anual</h3>
                     <p style="color: var(--text-subtle); font-size: 0.88rem;">Solución Completa Todo el Año</p>
                     <div class="price-tag">S/ 29.90 <small>/ año</small></div>
-                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 30 Días</div>
+                    <div class="retention-badge" style="background: rgba(99,102,241,0.15);">🕒 Retención: 60 Días</div>
                     <ul class="price-features">
                         <li><strong>Red P2P (Emisor + Receptores)</strong></li>
-                        <li><strong>Retención de historial: 30 Días</strong></li>
+                        <li><strong>Retención de historial: 60 Días</strong></li>
                         <li>Gestión de cupos flotantes</li>
                         <li>Webhooks de Telegram</li>
                         <li>Soporte técnico preferencial 24/7</li>
@@ -1532,15 +1890,15 @@
 <section class="install-guide" id="guia">
     <div class="container">
         <div class="text-center">
-            <span class="section-badge">Instalación</span>
-            <h2 class="section-title">Pasos para instalar la <span class="text-indigo">APK Oficial</span></h2>
-            <p class="section-subtitle">Instalación rápida sin complicaciones en cualquier Android.</p>
+            <span class="section-badge reveal">Instalación</span>
+            <h2 class="section-title reveal delay-1">Pasos para instalar la <span class="text-indigo">APK Oficial</span></h2>
+            <p class="section-subtitle reveal delay-2">Instalación rápida sin complicaciones en cualquier Android.</p>
         </div>
         <div class="guide-content">
-            <div class="guide-image">
+            <div class="guide-image reveal-left delay-1">
                 <img src="assets/Nueva versión/Captura guia.jpg" alt="Guía de Instalación YapeVoice">
             </div>
-            <div>
+            <div class="reveal-right delay-2">
                 <ol class="guide-steps">
                     <li><span class="guide-step-num">1</span>Descarga el archivo APK oficial desde el botón inferior.</li>
                     <li><span class="guide-step-num">2</span>Abre la carpeta de Descargas en tu teléfono y toca la APK.</li>
@@ -1562,18 +1920,18 @@
 <!-- FAQ -->
 <section class="faq" id="faq">
     <div class="container text-center">
-        <span class="section-badge">Preguntas Frecuentes</span>
-        <h2 class="section-title">Resolvemos tus <span class="text-indigo">dudas</span></h2>
-        <p class="section-subtitle">Respuestas a las preguntas más frecuentes sobre el servicio.</p>
+        <span class="section-badge reveal">Preguntas Frecuentes</span>
+        <h2 class="section-title reveal delay-1">Resolvemos tus <span class="text-indigo">dudas</span></h2>
+        <p class="section-subtitle reveal delay-2">Respuestas a las preguntas más frecuentes sobre el servicio.</p>
 
-        <div class="faq-list">
+        <div class="faq-list reveal delay-2">
             <div class="faq-item">
                 <button class="faq-question">¿La app solicita mis contraseñas o claves bancarias? <span class="faq-arrow">▼</span></button>
                 <div class="faq-answer"><p><strong>Jamás.</strong> YapeVoice Notifier solo lee las notificaciones estándar que muestra tu teléfono al recibir un pago. No interactúa con la app de Yape ni requiere contraseñas.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">¿Por cuántos días se guarda el historial de depósitos? <span class="faq-arrow">▼</span></button>
-                <div class="faq-answer"><p>El tiempo de retención depende de tu plan: <strong>Free (24 Horas)</strong>, <strong>Personal (7 Días)</strong> y <strong>Premium (30 Días)</strong>. Los datos antiguos se eliminan automáticamente de forma segura.</p></div>
+                <div class="faq-answer"><p>Todos los planes vigentes conservan los últimos <strong>60 días completos de historial (hasta 2,000 cobros)</strong> con cifrado de hardware AES-256. El modo de prueba conserva 14 días.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">¿Funciona en teléfonos sin acceso a internet? <span class="faq-arrow">▼</span></button>
@@ -1590,11 +1948,11 @@
 <!-- CTA / DESCARGA -->
 <section class="cta-banner" id="descargar">
     <div class="container text-center">
-        <span class="section-badge">Descarga Directa</span>
-        <h2 class="section-title">Comienza a probar <span class="text-indigo">YapeVoice hoy</span></h2>
-        <p class="section-subtitle">Escanea el QR de descarga o pulsa el botón para obtener la APK Oficial.</p>
+        <span class="section-badge reveal">Descarga Directa</span>
+        <h2 class="section-title reveal delay-1">Comienza a probar <span class="text-indigo">YapeVoice hoy</span></h2>
+        <p class="section-subtitle reveal delay-2">Escanea el QR de descarga o pulsa el botón para obtener la APK Oficial.</p>
 
-        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 32px 0;">
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 32px 0;" class="reveal delay-2">
             <div>
                 <div class="cta-qr">
                     <img src="assets/Nueva versión/qr_download.png" alt="QR Descarga App">
@@ -1609,7 +1967,7 @@
             </div>
         </div>
 
-        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;" class="reveal delay-3">
             <a href="https://github.com/techinnovareg-lgtm/YapeVoice-app/releases/download/v1.0.0/app-release-7.apk" target="_blank" class="btn-primary">📥 Descargar APK Oficial</a>
             <a href="https://wa.me/51947515529?text=Hola%2C%20deseo%20asistencia%20para%20probar%20YapeVoice%20Notifier" target="_blank" class="btn-secondary">💬 Contactar por WhatsApp</a>
         </div>
@@ -1664,22 +2022,62 @@
     </div>
 </footer>
 
-<!-- Floating WhatsApp -->
+<!-- Floating WhatsApp Button -->
 <a href="https://wa.me/51947515529" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Soporte WhatsApp">
     <svg viewBox="0 0 24 24">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
 </a>
 
-<!-- JAVASCRIPT -->
+<!-- Mobile Sticky Bottom Download Bar -->
+<div class="mobile-sticky-bar" id="mobileStickyBar">
+    <a href="#descargar" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px 20px; font-size: 0.9rem;">
+        📥 Descargar YapeVoice APK
+    </a>
+</div>
+
+<!-- JAVASCRIPT ENGINE (SCROLL REVEAL, TTS SPEECH SIMULATION, COUNTERS) -->
 <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    // 1. Scroll Reveal Engine (IntersectionObserver)
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
     });
 
-    // Mobile nav toggle
+    // 2. Navbar Scroll Effect & Mobile Sticky CTA
+    const navbar = document.getElementById('navbar');
+    const mobileStickyBar = document.getElementById('mobileStickyBar');
+    const heroSection = document.getElementById('inicio');
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        navbar.classList.toggle('scrolled', scrollY > 40);
+
+        if (mobileStickyBar && heroSection) {
+            const heroHeight = heroSection.offsetHeight;
+            if (scrollY > heroHeight - 100) {
+                mobileStickyBar.classList.add('visible');
+            } else {
+                mobileStickyBar.classList.remove('visible');
+            }
+        }
+    });
+
+    // 3. Mobile Nav Toggle
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
@@ -1687,7 +2085,7 @@
         link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
-    // Video tabs
+    // 4. Video Tabs Switcher
     document.querySelectorAll('.video-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
@@ -1697,7 +2095,7 @@
         });
     });
 
-    // FAQ accordion
+    // 5. FAQ Accordion Engine
     document.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', () => {
             const item = q.closest('.faq-item');
@@ -1706,6 +2104,72 @@
             if (!wasOpen) item.classList.add('open');
         });
     });
+
+    // 6. Interactive Live Speech Notification Demo (TTS)
+    const btnTestSound = document.getElementById('btnTestSound');
+    const demoToast = document.getElementById('demoToast');
+    const demoToastText = document.getElementById('demoToastText');
+
+    const demoSamples = [
+        { name: 'María Carmen', amount: '45.00', wallet: 'Yape' },
+        { name: 'José Luis', amount: '20.00', wallet: 'Yape' },
+        { name: 'Carlos Amambal', amount: '150.00', wallet: 'Plin' },
+        { name: 'Lucía Mendoza', amount: '35.50', wallet: 'Yape' }
+    ];
+    let sampleIdx = 0;
+
+    btnTestSound.addEventListener('click', () => {
+        const sample = demoSamples[sampleIdx % demoSamples.length];
+        sampleIdx++;
+
+        const voiceText = `¡${sample.wallet}! Te yapeó ${sample.amount} soles ${sample.name}`;
+        demoToastText.textContent = `Te yapeó S/ ${sample.amount} ${sample.name}`;
+
+        // Show Toast overlay on Hero phone mockup
+        demoToast.classList.add('active');
+        setTimeout(() => {
+            demoToast.classList.remove('active');
+        }, 3500);
+
+        // Speech Synthesis
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Stop any ongoing speech
+            const utterance = new SpeechSynthesisUtterance(voiceText);
+            utterance.lang = 'es-PE';
+            utterance.rate = 1.0;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+    });
+
+    // 7. Stat Number Counter Animation on Scroll
+    const counters = document.querySelectorAll('.counter');
+    let hasCounted = false;
+
+    const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasCounted) {
+                hasCounted = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 40;
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count) + '%';
+                            setTimeout(updateCount, 30);
+                        } else {
+                            counter.innerText = target + '%';
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => countObserver.observe(c));
 </script>
 
 </body>
